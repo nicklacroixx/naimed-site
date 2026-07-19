@@ -85,18 +85,12 @@ h1 .hl{color:var(--em);}
 .fine{font-size:12.5px;color:var(--faint);}
 
 /* diagnostic widget */
-.dwidget{position:relative;border-radius:16px;padding:26px 26px 22px;background:linear-gradient(180deg,rgba(27,22,17,.85),rgba(15,13,10,.85));border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
-.dw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.dw-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
-.dw-live{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--em);}
-.dw-live i{width:6px;height:6px;border-radius:50%;background:var(--em);box-shadow:0 0 8px rgba(240,169,58,.8);animation:pulse 1.6s infinite;}
+.reject-card{position:relative;border-radius:16px;padding:34px 32px 28px;background:linear-gradient(180deg,rgba(27,22,17,.85),rgba(15,13,10,.85));border:1px solid var(--line-soft);box-shadow:0 30px 80px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.dw-row{display:grid;grid-template-columns:110px 1fr 34px;align-items:center;gap:12px;margin-bottom:13px;}
-.dw-row .n{font-size:12px;color:var(--muted);font-weight:600;}
-.dw-row .t{height:6px;border-radius:4px;background:rgba(255,255,255,.06);overflow:hidden;}
-.dw-row .t i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--em-dim),var(--em));box-shadow:0 0 8px rgba(240,169,58,.3);}
-.dw-row .v{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-align:right;}
-.dw-foot{border-top:1px dashed var(--line);padding-top:16px;margin-top:6px;font-size:11.5px;color:var(--faint);line-height:1.5;}
+.reject-stamp{position:absolute;top:24px;right:26px;border:2px solid var(--danger);color:var(--danger);padding:4px 12px;font-weight:800;font-size:11px;letter-spacing:.12em;transform:rotate(7deg);border-radius:4px;opacity:.8;}
+.rc-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:18px;}
+.rc-body{font-size:14.5px;color:var(--muted);line-height:1.75;font-style:italic;padding-right:70px;}
+.rc-foot{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line-soft);font-size:13px;color:var(--em);font-weight:600;line-height:1.5;}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:8px 0 0;}
@@ -125,28 +119,25 @@ section{padding:64px 0;border-top:1px solid var(--line-soft);}
 @media(max-width:820px){.fit-grid{grid-template-columns:1fr;}.hidden-mob{display:none;}}
 
 /* insight block */
-.insight{padding:36px 34px;}
-.insight p{color:var(--muted);line-height:1.75;font-size:15px;margin-bottom:14px;}
-.insight p:last-child{margin-bottom:0;}
-.insight .kicker{color:var(--text);font-weight:700;text-align:center;margin:24px 0 10px;font-size:16px;}
-.insight .punch{color:#fff;font-size:clamp(19px,2.6vw,25px);font-weight:800;text-align:center;line-height:1.4;letter-spacing:-.01em;margin-top:28px;}
-.insight .nerve{border-left:2px solid var(--em);padding:2px 0 2px 20px;margin:22px 0;color:var(--text);font-size:15.5px;line-height:1.7;}
-.insight .nerve b{color:#fff;}
+.scene-intro{font-size:16px;color:var(--muted);font-style:italic;max-width:600px;margin:0 auto 40px;text-align:center;line-height:1.6;}
+.timeline{max-width:640px;margin:0 auto 44px;display:flex;flex-direction:column;}
+.tl-row{display:grid;grid-template-columns:84px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line-soft);}
+.tl-row:first-child{border-top:none;}
+.tl-time{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--em);font-weight:700;padding-top:2px;}
+.tl-text{color:var(--text);font-size:15px;line-height:1.6;}
+.scene-quote{max-width:680px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:36px 38px;font-size:17px;line-height:1.65;color:var(--text);position:relative;font-style:normal;}
+.scene-quote::before{content:'"';position:absolute;top:2px;left:22px;font-size:64px;color:var(--em);opacity:.25;font-family:Georgia,serif;}
+.scene-quote footer{margin-top:18px;font-size:12.5px;color:var(--faint);}
+@media(max-width:600px){.tl-row{grid-template-columns:1fr;gap:4px;}}
 
 /* versus */
-.versus-grid{display:grid;grid-template-columns:1fr;gap:20px;}
-@media(min-width:860px){.versus-grid{grid-template-columns:1fr 1fr;gap:24px;}}
-.versus-col{padding:32px;}
-.versus-col h3{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;}
-.versus-col.bad h3{color:var(--danger);}
-.versus-col.good h3{color:var(--em);}
-.cmp-list{display:flex;flex-direction:column;gap:15px;}
-.cmp-row{display:flex;gap:13px;align-items:flex-start;font-size:14px;line-height:1.55;color:var(--muted);}
-.versus-col.good .cmp-row{color:var(--text);}
-.cmp-ico{flex:none;width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
-.cmp-ico svg{width:11px;height:11px;display:block;}
-.cmp-x{background:rgba(248,113,113,.09);color:var(--danger);box-shadow:inset 0 0 0 1px rgba(248,113,113,.22);}
-.cmp-v{background:rgba(240,169,58,.14);color:var(--em);box-shadow:inset 0 0 0 1px rgba(240,169,58,.4),0 0 14px rgba(240,169,58,.18);}
+.landscape-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.landscape-card{padding:26px 24px;}
+.landscape-card h4{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--muted);}
+.landscape-card p{color:var(--faint);font-size:13.5px;line-height:1.65;}
+.landscape-card.me{border-color:var(--em);background:linear-gradient(160deg,var(--surface),rgba(240,169,58,.07));}
+.landscape-card.me h4{color:var(--em);}
+.landscape-card.me p{color:var(--text);}
 
 /* steps */
 .steps{display:flex;flex-direction:column;}
@@ -187,16 +178,14 @@ section{padding:64px 0;border-top:1px solid var(--line-soft);}
 
 /* faq */
 .faq-item{border-bottom:1px solid var(--line-soft);}
-.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:1.25rem;padding:1.5rem 0;}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1.5rem 0;}
 .faq-item summary::-webkit-details-marker{display:none;}
-.faq-idx{font-family:'JetBrains Mono',monospace;color:var(--em-dim);font-size:11px;letter-spacing:.1em;flex:none;transition:color .25s;}
 .faq-q{color:var(--text);font-weight:600;font-size:16px;line-height:1.4;flex:1;}
 .faq-plus{flex:none;color:var(--faint);font-size:20px;font-weight:300;line-height:1;transition:transform .3s,color .25s;}
-.faq-item summary:hover .faq-plus,.faq-item summary:hover .faq-idx{color:var(--em);}
+.faq-item summary:hover .faq-plus{color:var(--em);}
 .faq-item[open] summary .faq-plus{transform:rotate(45deg);color:var(--em);}
-.faq-item[open] summary .faq-idx{color:var(--em);}
-.faq-a{padding:0 2.5rem 1.7rem 0;margin-left:calc(1.25rem + 2.2em);color:var(--muted);font-size:14.5px;line-height:1.7;max-width:42rem;}
-@media(max-width:640px){.faq-a{margin-left:0;padding-right:0;}}
+.faq-a{padding:0 2.5rem 1.7rem 0;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:42rem;}
+@media(max-width:640px){.faq-a{padding-right:0;}}
 
 /* final cta */
 .final-cta{text-align:center;padding:64px 32px;}
@@ -264,16 +253,11 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
         <p class="fine reveal">Тайный собес и разбор причины отказов — от 19 900 ₽. Или начни с <a href="diagnostic/index.html" style="color:var(--em);text-decoration:underline">бесплатного скана кандидата</a> — 15 минут, без Telegram.</p>
       </div>
 
-      <div class="dwidget reveal">
-        <div class="dw-head">
-          <span class="dw-title">Что обычно решает исход финала</span>
-          <span class="dw-live"><i></i>инсайд</span>
-        </div>
-        <div class="dw-row"><span class="n">Резюме</span><span class="t"><i style="width:52%"></i></span><span class="v">52%</span></div>
-        <div class="dw-row"><span class="n">Ответы на финале</span><span class="t"><i style="width:71%"></i></span><span class="v">71%</span></div>
-        <div class="dw-row"><span class="n">Переговоры об окладе</span><span class="t"><i style="width:64%"></i></span><span class="v">64%</span></div>
-        <div class="dw-row"><span class="n">Первое впечатление</span><span class="t"><i style="width:45%"></i></span><span class="v">45%</span></div>
-        <div class="dw-foot">Ориентировочная раскладка по опыту найма на управленческие и менеджерские позиции. Твою персональную причину отказа считаем на разборе.</div>
+      <div class="reject-card reveal">
+        <div class="reject-stamp">ОТКАЗ</div>
+        <div class="rc-label">Письмо, которое ты уже получал</div>
+        <div class="rc-body">«Спасибо, что нашли время пообщаться с нами. По результатам собеседования мы приняли решение продолжить поиск с другими кандидатами. Желаем удачи в поиске работы.»</div>
+        <div class="rc-foot">Настоящую причину в этом письме не напишут никогда. Её знает только тот, кто сидел по другую сторону стола.</div>
       </div>
     </div>
 
@@ -316,44 +300,62 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
 
   <section id="insight">
     <div class="center">
-      <div class="section-tag"><span class="em-tag">Почему это работает</span></div>
-      <h2 class="section-title">Кандидат не видит себя<br class="hidden-mob"> со стороны нанимателя</h2>
-      <p class="section-sub">Это не вопрос компетентности. Это структурная слепая зона — свою причину отказа физически не видно с той стороны стола, где сидит кандидат.</p>
+      <div class="section-tag"><span class="em-tag">Инсайд</span></div>
+      <h2 class="section-title">Что происходит в комнате,<br class="hidden-mob"> пока ты отвечаешь</h2>
     </div>
-    <div class="glass insight">
-      <p>Карьерные консультанты и коучи учат общей теории: как оформить резюме, как отвечать на «сложные» вопросы. Это работает в среднем — и почти никогда не отвечает на твой конкретный вопрос: «почему отказали именно мне».</p>
-      <p>Кадровые агентства с «гарантией трудоустройства» продают доступ к вакансиям и подписку — но не сидели по ту сторону стола на финальном собеседовании с собственником и не могут сказать, что реально решило исход разговора.</p>
-      <p class="kicker">NAIMED устроен иначе</p>
-      <p>Я сам был на месте того, кто отказывает: провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за последние 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Я вижу резюме и ответы кандидата так же, как их видит наниматель — потому что сам им был.</p>
-      <p class="nerve">Иногда причина отказа вообще не в резюме и не в ответах. За 15 минут разговора наниматель считывает то, в чём ты сам себе не признаёшься: <b>страх</b> — не потянуть новый уровень ответственности, не справиться с тем, на что подписываешься, провалиться на новом месте у всех на виду. Ты называешь это «не сошлись по деталям». Наниматель называет это иначе — и просто не берёт.</p>
-      <p class="punch">Конкуренты продают метод.<br class="hidden-mob"> NAIMED даёт инсайдерский диагноз.</p>
+    <p class="scene-intro">Прямо сейчас, пока ты это читаешь, где-то идёт собеседование. Не моё — но легко могло бы быть. Вот что обычно происходит за эти 15 минут с той стороны стола.</p>
+    <div class="timeline">
+      <div class="tl-row"><span class="tl-time">0–2 мин</span><span class="tl-text">Первое впечатление уже сформировано — раньше, чем прозвучал первый содержательный вопрос.</span></div>
+      <div class="tl-row"><span class="tl-time">2–10 мин</span><span class="tl-text">Ты рассказываешь про опыт. Наниматель слышит либо цифры результата, либо «мы работали над этим».</span></div>
+      <div class="tl-row"><span class="tl-time">10–14 мин</span><span class="tl-text">Разговор об окладе. Инициативу либо держишь ты, либо она сразу переходит на сторону нанимателя.</span></div>
+      <div class="tl-row"><span class="tl-time">14–15 мин</span><span class="tl-text">Решение. Обычно оно принято раньше — на этой минуте его просто произносят вслух.</span></div>
+    </div>
+    <blockquote class="scene-quote">Иногда причина отказа вообще не в резюме и не в ответах. За эти 15 минут я считываю то, в чём кандидат сам себе не признаётся: страх — не потянуть новый уровень ответственности, провалиться на новом месте у всех на виду. Он называет это «не сошлись по деталям». Я называю это иначе — и просто не беру.
+      <footer>— из практики Николая, экс-коммерческого директора</footer>
+    </blockquote>
+  </section>
+
+  <section id="founder">
+    <div class="glass founder">
+      <div class="founder-grid">
+        <div>
+          <span class="em-tag" style="margin-bottom:16px;display:inline-block;">Почему я</span>
+          <h2>Почему мне можно верить</h2>
+          <p>Я не карьерный коуч из курса про «стань собой». Я сам сидел по другую сторону стола на собеседованиях на управленческие и менеджерские позиции в продажах — и сам решал, кому отказать.</p>
+          <p>Провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Знаю, что реально спрашивают на финале и что решает исход разговора — не в теории, а по сотням живых кейсов.</p>
+        </div>
+        <ul>
+          <li>Тысячи собеседований и решений «нанять / отказать» изнутри компаний</li>
+          <li>300+ нанятых и выросших в должности сотрудников за 5 лет в управлении</li>
+          <li>12 бизнесов, которым лично построил отдел продаж с нуля</li>
+          <li>Сеть контактов среди рекрутеров и руководителей — растёт с каждым разбором</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section id="versus">
     <div class="center">
-      <div class="section-tag"><span class="em-tag">Отличия</span></div>
-      <h2 class="section-title">Чем это отличается от того,<br class="hidden-mob"> что ты уже пробовал</h2>
-      <p class="section-sub">Рынок карьерной помощи не пустой — и это скорее хорошо: спрос подтверждён. Но большинство продают со стороны кандидата. NAIMED — с другой.</p>
+      <div class="section-tag"><span class="em-tag">Ландшафт</span></div>
+      <h2 class="section-title">На рынке три типа помощи —<br class="hidden-mob"> и у каждого своё слепое пятно</h2>
+      <p class="section-sub">Ниша не пустая, и это хорошо: спрос подтверждён. Но почти все продают со стороны кандидата.</p>
     </div>
-    <div class="versus-grid">
-      <div class="glass versus-col bad">
-        <h3>Обычный путь</h3>
-        <div class="cmp-list">
-          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Читаешь советы «для всех» и не знаешь, применимы ли они к твоему случаю</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Проходишь этапы вслепую — о провале узнаёшь по молчанию HR</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Веришь в «гарантию трудоустройства» на бумаге, которая ни к чему не обязывает</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Выбираешь между демпинговыми консультантами без опыта найма и дорогими курсами «про карьеру мечты»</span></div>
-        </div>
+    <div class="landscape-grid">
+      <div class="glass landscape-card">
+        <h4>Карьерный коуч</h4>
+        <p>Учит по книгам и своим кейсам. Никогда не сидел по другую сторону стола на собеседовании, которое решает твою судьбу.</p>
       </div>
-      <div class="glass versus-col good">
-        <h3>С NAIMED</h3>
-        <div class="cmp-list">
-          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Получаешь персональную причину отказа — ту, что видно только с другой стороны стола</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Тренируешь конкретный собес с человеком, который сам их проводил</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Честную оценку шансов — без обещаний, которые потом не подтверждаются</span></div>
-          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Понятную цену за понятный результат — от разбора до сопровождения к офферу</span></div>
-        </div>
+      <div class="glass landscape-card">
+        <h4>Агентство с «гарантией»</h4>
+        <p>Продаёт доступ к вакансиям и подписку. Гарантия на бумаге ни к чему не обязывает — жалобы на это уже есть даже у крупных игроков рынка.</p>
+      </div>
+      <div class="glass landscape-card">
+        <h4>Независимый консультант</h4>
+        <p>Дешевле остальных, но без реального опыта найма — общие советы, которые не учитывают именно твой случай.</p>
+      </div>
+      <div class="glass landscape-card me">
+        <h4>NAIMED</h4>
+        <p>Экс-коммерческий директор, который сам отказывал. Показывает персональную причину отказа — а не общий метод для всех.</p>
       </div>
     </div>
   </section>
@@ -387,25 +389,6 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
             <p>8 недель сопровождения: подбор целевых вакансий, переговоры по окладу. У части клиентов — прямой выход на вакансии через мою сеть контактов.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="founder">
-    <div class="glass founder">
-      <div class="founder-grid">
-        <div>
-          <span class="em-tag" style="margin-bottom:16px;display:inline-block;">Почему я</span>
-          <h2>Почему мне можно верить</h2>
-          <p>Я не карьерный коуч из курса про «стань собой». Я сам сидел по другую сторону стола на собеседованиях на управленческие и менеджерские позиции в продажах — и сам решал, кому отказать.</p>
-          <p>Провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Знаю, что реально спрашивают на финале и что решает исход разговора — не в теории, а по сотням живых кейсов.</p>
-        </div>
-        <ul>
-          <li>Тысячи собеседований и решений «нанять / отказать» изнутри компаний</li>
-          <li>300+ нанятых и выросших в должности сотрудников за 5 лет в управлении</li>
-          <li>12 бизнесов, которым лично построил отдел продаж с нуля</li>
-          <li>Сеть контактов среди рекрутеров и руководителей — растёт с каждым разбором</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -465,27 +448,27 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
     </div>
     <div style="max-width:760px;margin:0 auto;">
       <details class="faq-item">
-        <summary><span class="faq-idx">01</span><span class="faq-q">Это гарантия трудоустройства?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Это гарантия трудоустройства?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Нет. Обещания «гарантированного трудоустройства» на бумаге на этом рынке часто ничего не значат на практике. Я даю честную персональную оценку твоих шансов и работаю до результата в рамках выбранного формата — без пустых гарантий.</div>
       </details>
       <details class="faq-item">
-        <summary><span class="faq-idx">02</span><span class="faq-q">Чем это отличается от карьерного коуча?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Чем это отличается от карьерного коуча?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Коуч учит теории со стороны кандидата — по книгам и курсам. Я провёл тысячи собеседований и сам сидел по другую сторону стола, нанимая и отказывая кандидатам на управленческие и менеджерские позиции, поэтому вижу твой случай так же, как его увидит наниматель.</div>
       </details>
       <details class="faq-item">
-        <summary><span class="faq-idx">03</span><span class="faq-q">Почему это дороже, чем консультация обычного карьерного консультанта?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Почему это дороже, чем консультация обычного карьерного консультанта?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Обычный консультант учит по книгам. Я лично нанял и вырастил в должности 300+ сотрудников, построил отделы продаж и вытащил из кризиса 12 бизнесов. Это не сертификат коуча — это тысячи решений «взять / отказать», которые теперь работают на тебя за один разбор.</div>
       </details>
       <details class="faq-item">
-        <summary><span class="faq-idx">04</span><span class="faq-q">Почему нет одной фиксированной цены?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Почему нет одной фиксированной цены?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Объём работы разный: кому-то нужен один разбор, кому-то — полное сопровождение до оффера. Точный формат и цену внутри вилки согласуем после тайного собеса, когда понятно, что именно мешает.</div>
       </details>
       <details class="faq-item">
-        <summary><span class="faq-idx">05</span><span class="faq-q">Что если после разбора шансы окажутся низкими?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Что если после разбора шансы окажутся низкими?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Скажу прямо, без смягчения ради продажи следующей ступени. Иногда честный ответ — это сменить целевую позицию или зарплатную вилку, а не продолжать биться в закрытую дверь.</div>
       </details>
       <details class="faq-item">
-        <summary><span class="faq-idx">06</span><span class="faq-q">Кто ведёт работу?</span><span class="faq-plus">+</span></summary>
+        <summary><span class="faq-q">Кто ведёт работу?</span><span class="faq-plus">+</span></summary>
         <div class="faq-a">Лично я — без передачи ассистентам или «команде карьерных консультантов». Поэтому набор в работу ограничен.</div>
       </details>
     </div>
