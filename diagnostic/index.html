@@ -1,0 +1,1183 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAIMED — скан кандидата: за 15 минут узнай, что тебя тормозит</title>
+<meta name="description" content="Бесплатный скан кандидата: 32 вопроса о резюме, собеседованиях и переговорах об окладе. Индекс готовности к офферу, главный барьер и разрыв между текущим и целевым доходом — в реальном времени.">
+<meta name="theme-color" content="#0F0D0A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230F0D0A'/%3E%3Cpath d='M13 2 3 14h6l-2 8 10-13h-6l2-7z' fill='%23F0A93A'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NAIMED">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="NAIMED — скан кандидата: за 15 минут узнай, что тебя тормозит">
+<meta property="og:description" content="Бесплатный скан кандидата: 32 вопроса о резюме, собеседованиях и переговорах об окладе. Индекс готовности к офферу, главный барьер и разрыв между текущим и целевым доходом — в реальном времени.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NAIMED — скан кандидата">
+<meta name="twitter:description" content="Бесплатный скан кандидата: 32 вопроса о резюме, собеседованиях и переговорах об окладе.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700;800;900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-display:'Inter',sans-serif; --font-body:'Inter',sans-serif;
+  --bg:#0F0D0A;
+  --surface:rgba(255,255,255,.02); --surface-2:rgba(255,255,255,.045);
+  --line:rgba(255,255,255,.1); --line-soft:rgba(255,255,255,.06);
+  --ink:#F4EDE1; --ink-2:#AC9F8B; --ink-3:#71654F;
+  --em:#F0A93A; --em-2:#F5C56E; --em-deep:#B3781E; --em-soft:rgba(240,169,58,.08);
+  --good:#F0A93A; --warn:#C9922E; --bad:#f87171;
+  --shadow:0 12px 40px rgba(0,0,0,.45);
+  --dur:.45s; --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.55;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1999;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px}
+a{text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit;color:inherit}
+::selection{background:#F0A93A;color:#1C1206}
+::-moz-selection{background:#F0A93A;color:#1C1206}
+.num,.gauge-num b,.gap-num,.loss-factor b,.progress-label{font-variant-numeric:tabular-nums}
+
+/* ─── NAV ─── */
+#nd-nav{position:sticky;top:0;z-index:60;background:rgba(15,13,10,.72);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--line-soft);
+  padding:16px 24px;display:flex;justify-content:space-between;align-items:center;transition:background .3s}
+#nd-nav.nd-scrolled{background:rgba(15,13,10,.92)}
+.nd-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:7px}
+.nd-logo .bolt{width:14px;height:14px;flex:none;color:var(--em)}
+.nd-back{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);transition:color .2s}
+.nd-back:hover{color:var(--em)}
+.nd-cta{padding:9px 16px;border:1px solid rgba(255,255,255,.16);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:all .2s}
+.nd-cta:hover{background:var(--em);border-color:var(--em);color:#1C1206}
+.nd-mid{display:flex;align-items:center;gap:18px}
+#navProgressTrack{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.08)}
+#progressFill{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--em-deep),var(--em));box-shadow:0 0 8px rgba(240,169,58,.55);transition:width .5s var(--ease)}
+#progressLabel{font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--ink-3);white-space:nowrap}
+#nd-nav{position:relative}
+
+/* ─── SHELL / LAYOUT ─── */
+.shell{max-width:1360px;margin:0 auto;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:28px;align-items:start}
+.shell.no-dash{grid-template-columns:1fr}
+@media(max-width:1024px){.shell{grid-template-columns:1fr}}
+@media(max-width:640px){.shell{padding:16px}}
+.intro{padding:56px 8px 24px;max-width:780px;position:relative}
+.intro::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(240,169,58,.14) 0%,transparent 64%);top:-180px;left:-240px;pointer-events:none;z-index:-1;
+  animation:glow-breathe 5s ease-in-out infinite}
+@keyframes glow-breathe{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.1);opacity:1}}
+.eyebrow{display:inline-block;border:1px solid rgba(240,169,58,.3);padding:5px 12px;font-size:9.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--em);margin-bottom:26px;animation:tag-pulse 3s ease-in-out infinite}
+@keyframes tag-pulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 14px rgba(240,169,58,.18)}}
+.intro h1{font-weight:800;font-size:clamp(28px,4.4vw,48px);line-height:1.1;letter-spacing:-.01em;margin-bottom:22px;
+  background:linear-gradient(135deg,#fff 0%,#9f978a 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  padding-left:.08em;padding-right:.08em;margin-left:-.08em;margin-right:-.08em}
+.intro h1 em{font-style:normal;-webkit-text-fill-color:var(--em)}
+.intro p{color:var(--ink-2);font-size:15.5px;max-width:580px;margin-bottom:10px}
+.intro-meta{display:flex;gap:32px;margin:28px 0 32px;flex-wrap:wrap}
+.intro-meta div{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);line-height:1.6}
+.intro-meta b{display:block;font-size:22px;color:var(--em);font-weight:800;letter-spacing:0;text-transform:none}
+.btn-primary{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;padding:17px 30px;border:none;background:var(--em);color:#1C1206;
+  font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;transition:background .2s,transform .1s}
+.btn-primary:hover{background:#fff}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:left .5s ease}
+.btn-primary:hover::after{left:100%}
+@media(hover:none){.btn-primary::after{display:none}}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:16px 24px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--ink);
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;transition:all .2s}
+.btn-ghost:hover{background:var(--em);border-color:var(--em);color:#1C1206}
+.flow{position:relative}
+.section-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(240,169,58,.28);padding:5px 12px;font-size:9.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--em);
+  margin-bottom:16px;animation:tag-pulse 3s ease-in-out infinite;cursor:pointer;user-select:none}
+.section-tag:hover{background:var(--em-soft)}
+.section-tag .chev{font-size:8px;letter-spacing:0;transition:transform .2s ease;display:inline-block}
+.section-tag.open .chev{transform:rotate(180deg)}
+.section-nav{position:absolute;top:calc(100% + 8px);left:0;background:#171208;border:1px solid var(--line);border-radius:10px;padding:6px;min-width:250px;z-index:80;box-shadow:var(--shadow);display:none}
+.section-nav.open{display:block}
+.section-nav button{display:flex;justify-content:space-between;align-items:baseline;gap:12px;width:100%;text-align:left;padding:9px 11px;border-radius:7px;background:none;border:none;color:var(--ink-2);
+  font-size:12.5px;font-weight:600;letter-spacing:normal;text-transform:none;cursor:pointer;font-family:var(--font-body)}
+.section-nav button:hover:not(:disabled){background:var(--em-soft);color:var(--ink)}
+.section-nav button.current{color:var(--em)}
+.section-nav button:disabled{opacity:.32;cursor:not-allowed}
+.section-nav button small{font-size:9px;color:var(--ink-3);font-weight:500;white-space:nowrap}
+.qcard{background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--line-soft);padding:36px;box-shadow:var(--shadow);position:relative;overflow:hidden;animation:cardIn var(--dur) var(--ease)}
+.qcard::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(240,169,58,.07) 0%,transparent 70%);top:-140px;right:-140px;pointer-events:none}
+@media(max-width:640px){.qcard{padding:24px 18px}}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.qcard.leaving{animation:cardOut .28s ease forwards}
+@keyframes cardOut{to{opacity:0;transform:translateY(-14px)}}
+.q-count{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.q-title{font-size:clamp(19px,2.4vw,26px);font-weight:800;letter-spacing:-.01em;margin-bottom:6px;color:#fff}
+.q-sub{color:var(--ink-2);font-size:14px;margin-bottom:24px}
+.q-input input[type=text],.q-input input[type=number],.q-input textarea{width:100%;padding:16px;border:1px solid var(--line);background:transparent;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s;color:var(--ink)}
+.q-input textarea{min-height:110px;resize:vertical}
+.q-input input:focus,.q-input textarea:focus{border-color:var(--em);box-shadow:0 0 0 2px rgba(240,169,58,.18)}
+.q-input input::placeholder,.q-input textarea::placeholder{color:#5c5344}
+.q-input input[type=number]::-webkit-outer-spin-button,.q-input input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.q-input input[type=number]{-moz-appearance:textfield;appearance:textfield}
+.unit-wrap{position:relative}
+.unit-wrap .unit{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5c5344;pointer-events:none}
+.opts{display:grid;gap:10px}
+.opts.cols-2{grid-template-columns:1fr 1fr}
+@media(max-width:560px){.opts.cols-2{grid-template-columns:1fr}}
+.opt{text-align:left;padding:15px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:12px;transition:border-color .2s,background .2s,box-shadow .2s,transform .2s}
+.opt:hover{border-color:rgba(240,169,58,.5);transform:translateY(-2px)}
+.opt.selected{border-color:var(--em);background:rgba(240,169,58,.08);box-shadow:0 0 0 1px rgba(240,169,58,.6),0 0 24px rgba(240,169,58,.22)}
+.opt .key{font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--ink-3);border:1px solid var(--line);padding:3px 7px;min-width:24px;text-align:center}
+.opt.selected .key{color:var(--em);border-color:var(--em)}
+.opt small{display:block;font-weight:500;color:var(--ink-2);font-size:12.5px;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{padding:11px 16px;border:1px solid var(--line);background:var(--surface);font-size:12.5px;font-weight:700;color:var(--ink-2);transition:all .16s;display:inline-flex;align-items:center;gap:8px}
+.chip .key{font-size:8.5px;font-weight:700;color:var(--ink-3);border:1px solid var(--line);padding:2px 5px;letter-spacing:.06em}
+.chip.selected .key{color:var(--em);border-color:var(--em)}
+.chip:hover{border-color:rgba(240,169,58,.5);color:var(--ink);transform:translateY(-2px)}
+.chip.selected{background:rgba(240,169,58,.1);border-color:var(--em);color:var(--em-2)}
+.q-nav{display:flex;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+.q-nav .spacer{flex:1}
+.btn-back{background:none;border:none;color:var(--ink-3);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;gap:6px;align-items:center;padding:10px 6px;transition:color .2s}
+.btn-back:hover{color:var(--em)}
+.btn-skip{background:none;border:none;color:var(--ink-3);font-size:12px;text-decoration:underline dotted;padding:10px 6px}
+.btn-skip:hover{color:var(--ink-2)}
+.enter-hint{font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--ink-3)}
+kbd{border:1px solid var(--line);border-bottom-width:2px;padding:1px 6px;font-size:9px;font-weight:700}
+.insight{margin-top:16px;border:1px solid var(--line-soft);border-left:2px solid var(--warn);background:var(--surface);backdrop-filter:blur(12px);padding:15px 18px;font-size:13.5px;color:var(--ink-2);animation:cardIn .4s var(--ease);display:none}
+.insight b{color:#fff}
+.insight.bad{border-left-color:var(--bad)}
+.insight.good{border-left-color:var(--good)}
+.dash{position:sticky;top:92px;display:flex;flex-direction:column;gap:14px}
+@media(max-width:1024px){.dash{position:static}}
+.panel{background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--line-soft);padding:22px;box-shadow:var(--shadow);transition:border-color .35s ease}
+.panel:hover{border-color:rgba(240,169,58,.22)}
+.panel-h{font-size:9px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--em);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px rgba(240,169,58,.7)}50%{opacity:.45;box-shadow:none}}
+.gauge-wrap{display:flex;align-items:center;gap:20px}
+.gauge{position:relative;width:150px;height:150px;flex:none}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge .track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:10}
+.gauge .val{fill:none;stroke:var(--em);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .8s var(--ease),stroke .5s;filter:drop-shadow(0 0 6px rgba(240,169,58,.4))}
+.gauge .scanline{fill:none;stroke:var(--em-2);stroke-width:2;opacity:.5;stroke-dasharray:6 460;animation:scan 2.6s linear infinite}
+@keyframes scan{to{stroke-dashoffset:-466}}
+.gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-num b{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;color:#fff}
+.gauge-num span{font-size:8.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-top:5px}
+.gauge-side{flex:1;min-width:0}
+.gauge-side .verdict{font-weight:800;font-size:15px;margin-bottom:4px;color:#fff}
+.gauge-side p{font-size:12.5px;color:var(--ink-2)}
+.cat-rows{display:flex;flex-direction:column;gap:11px}
+.cat-row{display:grid;grid-template-columns:96px 1fr 34px;align-items:center;gap:10px;font-size:12.5px}
+.cat-row .name{color:var(--ink-2);font-weight:600}
+.cat-bar{height:5px;background:rgba(255,255,255,.06);overflow:hidden}
+.cat-bar i{display:block;height:100%;width:0;transition:width .7s var(--ease),background .5s;box-shadow:0 0 8px rgba(240,169,58,.3)}
+.cat-row .num{font-size:12px;font-weight:700;text-align:right;color:var(--ink-2)}
+.constraint-card{border:1px solid var(--line-soft);padding:20px 22px;position:relative;overflow:hidden;background:var(--surface);backdrop-filter:blur(12px)}
+.constraint-card::after{content:"";position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(248,113,113,.12);filter:blur(12px)}
+.constraint-card .panel-h{margin-bottom:8px}
+.constraint-name{font-weight:800;font-size:19px;color:var(--bad);transition:color .4s}
+.constraint-why{font-size:12.5px;color:var(--ink-2);margin-top:6px}
+.gap-panel{border-color:rgba(240,169,58,.28);background:linear-gradient(160deg,var(--surface),rgba(240,169,58,.05))}
+.gap-panel:hover{border-color:rgba(240,169,58,.5)}
+.waiting-note{margin-top:10px;padding:9px 11px;border-radius:10px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.28);font-size:11.5px;line-height:1.5;color:#f3a9a9}
+.waiting-note b{color:var(--bad)}
+.gap-num{font-weight:800;font-size:clamp(28px,2.6vw,36px);color:var(--em);letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 24px rgba(240,169,58,.3)}
+.gap-sub{font-size:12px;color:var(--ink-2);margin-top:6px}
+.sanity-warn{margin-top:10px;padding:9px 11px;border-radius:10px;background:rgba(240,169,58,.1);border:1px solid rgba(240,169,58,.35);font-size:11.5px;line-height:1.5;color:#e8c98a}
+.sanity-warn b{color:#f5deb0}
+.barrier-list{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.barrier-row{font-size:12.5px;color:var(--ink-2);border-top:1px dashed rgba(255,255,255,.08);padding-top:8px}
+.barrier-row:first-child{border-top:none;padding-top:0}
+.barrier-row b{color:#fff;font-weight:700}
+.empty-note{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--ink-3)}
+.final{display:none;animation:cardIn .6s var(--ease)}
+.final.visible{display:block}
+.final-hero{background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--line-soft);padding:48px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:20px}
+@media(max-width:640px){.final-hero{padding:28px 20px}}
+.final-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 320px at 85% -10%,rgba(240,169,58,.12),transparent);pointer-events:none}
+.final-grid{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;position:relative}
+@media(max-width:760px){.final-grid{grid-template-columns:1fr;gap:24px}}
+.final-index b{font-weight:800;font-size:clamp(60px,8vw,92px);line-height:1;display:block;text-shadow:0 0 32px rgba(240,169,58,.25)}
+.final-index span{font-size:9px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-3)}
+.final-verdict h2{font-weight:800;font-size:clamp(21px,3vw,32px);margin-bottom:10px;line-height:1.2;color:#fff}
+.final-verdict p{color:var(--ink-2);max-width:580px}
+.final-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:20px}
+.list-num{display:flex;flex-direction:column;gap:12px}
+.list-num li{list-style:none;display:flex;gap:12px;font-size:14px;color:var(--ink-2)}
+.list-num li b{color:#fff}
+.list-num .n{font-size:10px;font-weight:700;color:var(--bad);border:1px solid rgba(248,113,113,.3);height:26px;min-width:26px;display:flex;align-items:center;justify-content:center;flex:none;margin-top:2px}
+.rec-list li .n{color:var(--em);border-color:rgba(240,169,58,.3)}
+.cta-panel{padding:44px 36px;text-align:center;border:1px solid rgba(240,169,58,.3);background:rgba(240,169,58,.05);margin-bottom:22px;position:relative;overflow:hidden}
+.cta-panel::before{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(240,169,58,.1) 0%,transparent 70%);top:-160px;right:-120px;pointer-events:none;animation:glow-breathe 7s ease-in-out infinite}
+.cta-panel h3{font-weight:800;font-size:clamp(19px,2.4vw,26px);margin-bottom:12px;color:#fff;position:relative}
+.cta-panel p{color:var(--ink-2);max-width:540px;margin:0 auto 26px;position:relative}
+.ec-wrap{margin-top:18px;position:relative}
+.ec-toggle{background:none;border:none;color:var(--ink-3);font-size:12px;text-decoration:underline dotted;transition:color .2s}
+.ec-toggle:hover{color:var(--ink-2)}
+.ec-form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.ec-form input{padding:12px 14px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:13.5px;min-width:180px;outline:none;transition:border-color .2s}
+.ec-form input:focus{border-color:var(--em)}
+.ec-form input::placeholder{color:#5c5344}
+.ec-note{font-size:11px;color:var(--ink-3);margin-top:10px;max-width:340px;margin-left:auto;margin-right:auto}
+.final-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+.sc-good{color:var(--good)!important}.sc-warn{color:var(--warn)!important}.sc-bad{color:var(--bad)!important}
+.find-count{font-size:9px;color:var(--bad);letter-spacing:.1em}
+.find-row{display:flex;gap:9px;font-size:12px;line-height:1.45;color:var(--ink-2);padding:8px 0;border-top:1px dashed rgba(255,255,255,.06);align-items:flex-start;animation:cardIn .4s var(--ease)}
+.find-row:first-child{border-top:none;padding-top:0}
+.find-dot{width:6px;height:6px;border-radius:50%;flex:none;margin-top:5px}
+.find-dot.bad{background:var(--bad);box-shadow:0 0 8px rgba(248,113,113,.6)}
+.find-dot.warn{background:var(--warn)}
+.find-toggle{margin-top:12px;width:100%;background:none;border:1px solid var(--line);color:var(--ink-2);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:9px 12px;transition:all .2s}
+.find-toggle:hover{border-color:var(--em);color:var(--em)}
+.find-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 26px}
+@media(max-width:700px){.find-grid{grid-template-columns:1fr}}
+.prob-detail{font-size:12px;color:var(--ink-3);margin-top:3px;line-height:1.5}
+.mirror-quote{margin-top:20px;border-left:2px solid var(--em);padding:14px 18px;background:rgba(240,169,58,.05);font-size:14px;color:var(--ink-2);max-width:640px}
+.mirror-quote b{color:#fff}
+.founder-line{border:1px solid var(--line-soft);padding:18px 20px;background:var(--surface);font-size:13px;color:var(--ink-2);line-height:1.6}
+.founder-line b{color:#fff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.print-report{display:none}
+@media print{
+  :root{--pr-paper:#FAF8F4;--pr-ink:#1D1A14;--pr-ink-2:#655C4C;--pr-ink-3:#948A76;--pr-line:#E3DCCB;--pr-accent:#9C6B1E;--pr-accent-soft:#F5EAD6;--pr-bad:#A3271E;--pr-bad-soft:#F7EBE9;--pr-serif:'PT Serif',Georgia,serif}
+  @page{margin:0;size:A4}
+  body{background:var(--pr-paper)!important;background-image:none!important;color:var(--pr-ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #nd-nav,.shell{display:none!important;position:static!important}
+  body::after{display:none!important}
+  .print-report{display:block;font-family:var(--font-body);color:var(--pr-ink)}
+  .pr-page{page-break-after:always;background:var(--pr-paper);padding:16mm 16mm 14mm;min-height:277mm;box-sizing:border-box;position:relative}
+  .pr-page:last-child{page-break-after:auto}
+  .pr-eyebrow{font-family:var(--font-body);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--pr-accent)}
+  .pr-cover{padding:0;background:linear-gradient(155deg,#0F0D0A,#1B1611 55%,#0F0D0A)}
+  .pr-cover .pr-cover-in{height:277mm;box-sizing:border-box;color:#fff;position:relative}
+  .pr-cover-top{position:absolute;top:22mm;left:18mm;right:18mm;display:flex;justify-content:space-between;align-items:flex-start}
+  .pr-cover-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:.03em}
+  .pr-cover-logo span{display:block;font-family:var(--font-body);font-size:8.5px;font-weight:500;letter-spacing:.26em;color:#F0C87A;margin-top:6px}
+  .pr-cover-meta{text-align:right;font-size:9.5px;color:#B8AC93;letter-spacing:.05em;line-height:1.8}
+  .pr-cover-mid{position:absolute;top:112mm;left:18mm;right:18mm}
+  .pr-cover-kicker{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#F0C87A;margin-bottom:16px}
+  .pr-cover-title{font-family:var(--pr-serif);font-weight:700;font-size:38px;line-height:1.14;letter-spacing:-.01em;margin-bottom:18px;max-width:150mm}
+  .pr-cover-company{font-family:var(--pr-serif);font-weight:400;font-style:italic;font-size:22px;color:#DACFB6}
+  .pr-cover-sub{margin-top:6px;font-size:11px;color:#9C9280;letter-spacing:.03em}
+  .pr-cover-bottom{position:absolute;bottom:22mm;left:18mm;right:18mm;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end}
+  .pr-cover-index{display:flex;align-items:baseline;gap:10px}
+  .pr-cover-index b{font-family:var(--pr-serif);font-size:34px;font-weight:700}
+  .pr-cover-index span{font-size:10px;color:#B8AC93;letter-spacing:.04em;max-width:110px;line-height:1.4}
+  .pr-cover-confid{font-size:8.5px;color:#7A7160;letter-spacing:.05em;max-width:140px;text-align:right;line-height:1.6}
+  .pr-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--pr-line);padding-bottom:10px;margin-bottom:20px}
+  .pr-h-l{display:flex;align-items:baseline;gap:9px}
+  .pr-h-l b{font-family:'Orbitron',sans-serif;font-weight:900;font-size:11px;letter-spacing:.03em}
+  .pr-h-l span{font-size:9.5px;color:var(--pr-ink-3);letter-spacing:.03em}
+  .pr-h-r{font-size:9px;color:var(--pr-ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .pr-f{margin-top:28mm;padding-top:12px;border-top:1px solid var(--pr-line);display:flex;justify-content:space-between;font-size:8px;color:var(--pr-ink-3);letter-spacing:.04em}
+  .pr-tag{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pr-accent);margin-bottom:8px}
+  .pr-title{font-family:var(--pr-serif);font-weight:700;font-size:25px;letter-spacing:-.01em;margin-bottom:6px;line-height:1.15}
+  .pr-lede{font-size:12px;color:var(--pr-ink-2);max-width:150mm;margin-bottom:20px;line-height:1.55}
+  .pr-sum-grid{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:center;margin-bottom:20px}
+  .pr-gauge{width:120px;height:120px;position:relative;flex:none}
+  .pr-gauge svg{transform:rotate(-90deg);display:block}
+  .pr-gauge b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--pr-serif);font-size:32px;font-weight:700}
+  .pr-quote{font-family:var(--pr-serif);font-style:italic;font-size:15px;line-height:1.5;color:var(--pr-ink);border-left:2px solid var(--pr-accent);padding:2px 0 2px 16px;margin:18px 0 20px}
+  .pr-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:6px}
+  .pr-stat{border:1px solid var(--pr-line);border-radius:3px;padding:14px 16px}
+  .pr-stat .k{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pr-ink-3);margin-bottom:6px}
+  .pr-stat .v{font-family:var(--pr-serif);font-size:20px;font-weight:700}
+  .pr-stat.bad .v{color:var(--pr-bad)}
+  .pr-stat.good .v{color:var(--pr-accent)}
+  .pr-stat .d{font-size:9.5px;color:var(--pr-ink-3);margin-top:3px}
+  .pr-card{border:1px solid var(--pr-line);border-radius:3px;padding:18px 20px;background:#fff}
+  .pr-h2{font-family:var(--font-body);font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pr-ink);margin:0 0 14px;display:flex;align-items:center;gap:8px}
+  .pr-h2::after{content:"";flex:1;height:1px;background:var(--pr-line)}
+  .pr-h2 i{color:var(--pr-accent);font-style:normal}
+  .pr-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pr-bars>div{margin-bottom:13px}
+  .pr-bars .lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--pr-ink);font-weight:600;margin-bottom:5px}
+  .pr-bars .lbl b{font-family:var(--pr-serif);font-weight:700;font-size:13px}
+  .pr-bar{height:5px;background:#EFEAE0;border-radius:99px}
+  .pr-bar i{display:block;height:100%;border-radius:99px}
+  .pr-list{list-style:none;margin:0;padding:0}
+  .pr-list li{display:flex;gap:12px;font-size:11.5px;color:var(--pr-ink-2);margin-bottom:14px;line-height:1.5}
+  .pr-list li:last-child{margin-bottom:0}
+  .pr-list b.hd{color:var(--pr-ink);font-weight:600}
+  .pr-list .n{font-family:var(--pr-serif);font-size:12px;font-weight:700;color:var(--pr-accent);border:1px solid var(--pr-accent);border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
+  .pr-list.pr-red .n{color:var(--pr-bad);border-color:var(--pr-bad)}
+  .pr-list .detail{display:block;color:var(--pr-ink-3);font-size:10px;margin-top:3px;line-height:1.5}
+  .pr-gapbox{text-align:center;padding:22px 10px}
+  .pr-gapbox .g{font-family:var(--pr-serif);font-size:34px;font-weight:700;color:var(--pr-accent)}
+  .pr-gapbox .s{font-size:10.5px;color:var(--pr-ink-3);margin-top:8px;letter-spacing:.03em}
+  .pr-gapbox .rows{display:flex;justify-content:center;gap:26px;margin-top:16px;border-top:1px dotted var(--pr-line);padding-top:14px}
+  .pr-gapbox .rows div{text-align:center}
+  .pr-gapbox .rows .k{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--pr-ink-3)}
+  .pr-gapbox .rows .v{font-family:var(--pr-serif);font-size:15px;font-weight:700;margin-top:3px}
+  .pr-log{columns:2;column-gap:22px;font-size:9.5px;color:var(--pr-ink-2);line-height:1.6}
+  .pr-log div{break-inside:avoid;margin-bottom:7px;padding-left:12px;position:relative}
+  .pr-log div::before{content:"";position:absolute;left:0;top:6px;width:4px;height:4px;border-radius:50%;background:var(--pr-ink-3)}
+  .pr-log div.bad::before{background:var(--pr-bad)}
+  .pr-log div.warn::before{background:#B8863A}
+  .pr-founder{border:1px solid var(--pr-line);border-radius:3px;padding:18px 20px;font-size:11.5px;color:var(--pr-ink-2);line-height:1.65}
+  .pr-founder b{color:var(--pr-ink)}
+  .pr-back{background:linear-gradient(155deg,#0F0D0A,#1B1611 55%,#0F0D0A);color:#fff}
+  .pr-back-title{font-family:var(--pr-serif);font-weight:700;font-size:29px;line-height:1.2;max-width:140mm;margin-bottom:16px}
+  .pr-back-title i{color:#F0C87A;font-style:normal}
+  .pr-back-text{font-size:12px;color:#C9BFA8;max-width:130mm;line-height:1.6;margin-bottom:26px}
+  .pr-back-contact{display:flex;gap:28px;border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+  .pr-back-contact div .k{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#F0C87A;margin-bottom:5px}
+  .pr-back-contact div .v{font-size:12px;color:#fff}
+}
+</style></head><body>
+
+<nav id="nd-nav">
+  <a href="../index.html" class="nd-logo"><svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h6l-2 8 10-13h-6l2-7z"/></svg>NAIMED</a>
+  <div class="nd-mid">
+    <span id="progressLabel">0%</span>
+    <a class="nd-back" href="../index.html">← на сайт</a>
+    <a class="nd-cta" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Telegram</a>
+  </div>
+  <div id="navProgressTrack"><div id="progressFill"></div></div>
+</nav>
+
+<div class="shell"><main class="flow" id="flow">
+<section class="intro" id="introScreen">
+  <div class="eyebrow">Скан кандидата · бесплатно</div>
+  <h1>Найдём точную причину, по которой тебя <em>ещё не взяли</em></h1>
+  <p>32 вопроса о резюме, поведении на собеседованиях и переговорах об окладе. По ходу ответов система в реальном времени считает индекс готовности к офферу, находит главный барьер и показывает не только разрыв в окладе, но и то, сколько ты уже теряешь на каждом месяце поиска.</p>
+  <div class="intro-meta">
+    <div><b>15–20 мин</b>время скана</div>
+    <div><b>4 категории</b>под сканером</div>
+    <div><b>₽/год</b>разрыв в доходе</div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn-primary" id="btnStart">Начать скан →</button></div>
+</section>
+<section id="questionScreen" style="display:none">
+  <div style="position:relative;display:inline-block"><div class="section-tag" id="sectionTag"></div><div class="section-nav" id="sectionNav"></div></div>
+  <div id="cardHost"></div>
+  <div class="insight" id="insightBox"></div>
+</section>
+<section class="final" id="finalScreen"></section>
+</main>
+<aside class="dash" id="dash">
+  <div class="panel">
+    <div class="panel-h">Индекс готовности к офферу <span class="live-dot"></span></div>
+    <div class="gauge-wrap">
+      <div class="gauge"><svg viewBox="0 0 160 160"><circle class="track" cx="80" cy="80" r="70"></circle><circle class="scanline" cx="80" cy="80" r="70" id="scanLine"></circle><circle class="val" cx="80" cy="80" r="70" id="gaugeVal"></circle></svg>
+        <div class="gauge-num"><b id="indexNum">—</b><span>из 100</span></div></div>
+      <div class="gauge-side"><div class="verdict" id="indexVerdict">Сканер готов</div><p id="indexDesc">Отвечай на вопросы — индекс и оценки категорий будут пересчитываться после каждого ответа.</p></div>
+    </div>
+  </div>
+  <div class="panel gap-panel">
+    <div class="panel-h">Разрыв в зарплате</div>
+    <div class="gap-num" id="gapNum">— ₽/год</div>
+    <div class="gap-sub" id="gapSub">Разница между текущим и целевым окладом. Появится после блока «О тебе».</div>
+    <div class="waiting-note" id="waitingNote" style="display:none"></div>
+    <div class="sanity-warn" id="sanityWarn" style="display:none"></div>
+    <div class="barrier-list" id="barrierList"></div>
+  </div>
+  <div class="constraint-card">
+    <div class="panel-h">Главный барьер</div>
+    <div class="constraint-name" id="constraintName">Определяется…</div>
+    <div class="constraint-why" id="constraintWhy">Нужно больше ответов, чтобы поставить точный диагноз.</div>
+  </div>
+  <div class="panel"><div class="panel-h">Категории</div><div class="cat-rows" id="catRows"></div></div>
+  <div class="panel"><div class="panel-h">Находки сканера <span class="find-count" id="findCount"></span></div><div id="findRows"><div class="empty-note">// пока чисто</div></div></div>
+</aside>
+</div>
+<div class="print-report" id="printReport"></div>
+
+<script>
+const NaimedScan = (() => {
+'use strict';
+const C = {
+  STORAGE_KEY: 'naimed_scan_v1',
+  BOOKING_URL: 'https://t.me/klimenko_prod',
+  WEIGHTS: { resume:.25, interview:.30, negotiation:.25, positioning:.20 }
+};
+const CAT_LABELS = { resume:'Резюме', interview:'Собеседования', negotiation:'Переговоры', positioning:'Позиционирование' };
+const SECTION_LABELS = { profile:'01 · О тебе', resume:'02 · Резюме', interview:'03 · Собеседования', negotiation:'04 · Деньги', final:'05 · Итог' };
+
+const QUESTIONS = [
+  { id:'target_role', section:'profile', type:'select', required:true,
+    title:'На какой уровень позиции претендуешь?',
+    options:[{v:'management',t:'Управленческая позиция',d:'директор, руководитель направления'},{v:'manager',t:'Менеджерская позиция',d:'РОП, тимлид, руководитель группы'},{v:'specialist',t:'Ведущий специалист',d:'без прямых подчинённых'},{v:'other',t:'Другое'}] },
+  { id:'experience_years', section:'profile', type:'number', required:true, unit:'лет',
+    title:'Сколько лет опыта в продажах или управлении?' },
+  { id:'search_months', section:'profile', type:'number', required:true, unit:'мес',
+    title:'Сколько месяцев уже находишься в активном поиске?',
+    sub:'0 — если только начинаешь.',
+    insight:v => v>=6 ? {tone:'bad', text:'Полгода активного поиска без оффера — рынок не будет ждать: каждый месяц на те же вакансии заходят новые кандидаты, и позиция не молодеет.'}
+               : v>=3 ? {tone:'warn', text:'Три месяца — момент, когда стоит менять подход, а не количество откликов.'} : null },
+  { id:'current_status', section:'profile', type:'select', required:true,
+    title:'Как сейчас обстоят дела с поиском?',
+    options:[{v:'active',t:'Активно откликаюсь и хожу на собеседования'},{v:'stuck',t:'Хожу на собеседования — офферов нет'},{v:'passive',t:'Смотрю рынок не спеша'},{v:'none',t:'Ещё не начал(а) искать'}],
+    score:v => v==='stuck' ? [{cat:'interview', delta:-6}] : v==='active' ? [{cat:'interview', delta:+4}] : [],
+    insight:v => v==='stuck' ? {tone:'bad', text:'Ты уже проходишь этапы отбора — значит, дело не в резюме, которое не открывают, а в чём-то на самих собеседованиях или переговорах. Разберём, где именно.'}
+             : v==='none' ? {tone:'warn', text:'Пока не начал(а) искать — самое время понять сильные и слабые стороны заранее, а не после первого отказа.'}
+             : v==='active' ? {tone:'good', text:'В процессе — дальше смотрим, на каком именно этапе теряются шансы.'} : null },
+  { id:'rejections_recent', section:'profile', type:'select', optional:true,
+    title:'Сколько отказов получил(а) за последние 3 месяца?',
+    options:[{v:'zero',t:'0 — отказов ещё не было'},{v:'few',t:'1–3'},{v:'several',t:'4–8'},{v:'many',t:'9 и больше'}],
+    score:v => v==='many' ? [{cat:'interview', delta:-10}] : v==='several' ? [{cat:'interview', delta:-5}] : v==='zero' ? [{cat:'interview', delta:+4}] : [],
+    insight:v => v==='many' ? {tone:'bad', text:'Много отказов подряд — это не невезение, а паттерн. Причина, скорее всего, повторяется от собеса к собесу, и её можно найти.'} : null },
+  { id:'current_salary', section:'profile', type:'money', required:true, unit:'₽/мес',
+    title:'Текущий оклад',
+    sub:'Или последний, если сейчас без работы.' },
+  { id:'target_salary', section:'profile', type:'money', required:true, unit:'₽/мес',
+    title:'Целевой оклад',
+    sub:'На который претендуешь на новом месте.',
+    score:(v,a) => { const cur=Number(a.current_salary); if(!cur||!v) return []; const r=v/cur;
+      return r>=1.8 ? [{cat:'negotiation', delta:-8}] : (r>=1.1 && r<=1.5) ? [{cat:'negotiation', delta:+5}] : []; },
+    insight:(v,a) => { const cur=Number(a.current_salary); if(!cur||!v) return null; const r=v/cur;
+      return r>=1.8 ? {tone:'warn', text:`Скачок в ${r.toFixed(1)}× от текущего оклада реалистичен только с очень чёткой аргументацией, почему ты стоишь дороже. Проверим на следующих вопросах, есть ли она.`} : null; } },
+  { id:'main_blocker_guess', section:'profile', type:'select', optional:true,
+    title:'Что, как тебе кажется, тормозит тебя больше всего?',
+    sub:'Не обязательно угадывать точно — сверим с диагнозом системы в конце.',
+    options:[{v:'resume',t:'Резюме'},{v:'interview',t:'Ответы на собеседовании'},{v:'negotiation',t:'Переговоры об окладе'},{v:'positioning',t:'Не могу объяснить, чем отличаюсь от других'},{v:'dont_know',t:'Не знаю — в этом и вопрос'}] },
+
+  { id:'resume_tailored', section:'resume', type:'yesno',
+    title:'Резюме обновляется под каждую конкретную вакансию?',
+    sub:'Не одно и то же резюме на все отклики подряд.',
+    score:v => v==='yes' ? [{cat:'resume', delta:+10}] : [{cat:'resume', delta:-10}],
+    insight:v => v==='no' ? {tone:'bad', text:'Одно резюме на все вакансии читается как «одинаково подходит всем» — а значит, ни одной из них не подходит по-настоящему.'} : {tone:'good', text:'Подстройка под вакансию — уже плюс к резюме.'} },
+  { id:'resume_numbers', section:'resume', type:'yesno',
+    title:'В резюме есть цифры результатов?',
+    sub:'Рост выручки, % выполнения плана, размер команды — а не только обязанности.',
+    score:v => v==='yes' ? [{cat:'resume', delta:+12}] : [{cat:'resume', delta:-14}],
+    insight:v => v==='no' ? {tone:'bad', text:'Без цифр резюме читается как список обязанностей, а не результатов — тебя нечем отличить от полусотни других кандидатов на ту же позицию.'} : {tone:'good', text:'Цифры в резюме — то, что реально считывает наниматель за первые секунды.'} },
+  { id:'resume_response_rate', section:'resume', type:'select', required:true,
+    title:'Какой процент откликов получает хоть какой-то ответ?',
+    options:[{v:'lt5',t:'Меньше 5%'},{v:'r5_15',t:'5–15%'},{v:'r15_30',t:'15–30%'},{v:'gt30',t:'Больше 30%'}],
+    score:v => v==='gt30' ? [{cat:'resume', delta:+12}] : v==='r15_30' ? [{cat:'resume', delta:+4}] : v==='r5_15' ? [{cat:'resume', delta:-6}] : [{cat:'resume', delta:-14}],
+    insight:v => v==='lt5' ? {tone:'bad', text:'Меньше 5% ответов — резюме не проходит даже первичный отбор HR. Проблема на входе, ещё до разговора с руководителем.'} : null },
+  { id:'cover_message', section:'resume', type:'yesno',
+    title:'Пишешь сопроводительное сообщение под вакансию?',
+    sub:'Не просто «резюме во вложении».',
+    score:v => v==='yes' ? [{cat:'resume', delta:+6}] : [{cat:'resume', delta:-6}],
+    insight:v => v==='no' ? {tone:'warn', text:'Пустой отклик легко пропустить среди полусотни таких же — пара строк о том, почему именно эта вакансия, поднимает отклик заметно.'} : null },
+  { id:'profile_visible', section:'resume', type:'yesno',
+    title:'Профиль на hh.ru открыт для просмотра рекрутёрами?',
+    sub:'Не скрыт в настройках приватности.',
+    score:v => v==='yes' ? [{cat:'resume', delta:+6}] : [{cat:'resume', delta:-10}],
+    insight:v => v==='no' ? {tone:'bad', text:'Скрытый профиль значит, что тебя не может найти никто, кроме тех, кому ты сам откликнулся — большая часть рынка вакансий для тебя закрыта.'} : null },
+  { id:'resume_length', section:'resume', type:'select', optional:true,
+    title:'Сколько страниц занимает резюме?',
+    options:[{v:'one',t:'1 страница'},{v:'two',t:'2 страницы'},{v:'three_plus',t:'3 и больше'}],
+    score:v => v==='three_plus' ? [{cat:'resume', delta:-6}] : v==='one' ? [{cat:'resume', delta:+3}] : [],
+    insight:v => v==='three_plus' ? {tone:'warn', text:'На управленческих и менеджерских позициях резюме длиннее двух страниц обычно не дочитывают до конца — ключевые цифры теряются в тексте.'} : null },
+
+  { id:'role_energy', section:'interview', type:'select', required:true,
+    title:'Если бы наниматель мог увидеть, с какой энергией ты рассказываешь об этой роли на финале — что бы он подумал?',
+    sub:'Отвечай честно — это не проверка, а диагностика.',
+    options:[{v:'want',t:'Что я реально хочу именно эту роль'},{v:'default',t:'Что я скорее закрываю вопрос трудоустройства, чем горю этой ролью'},{v:'unsure',t:'Не знаю, как это выглядит со стороны'}],
+    score:v => v==='want' ? [{cat:'interview', delta:+10}] : v==='default' ? [{cat:'interview', delta:-16}] : [{cat:'interview', delta:-10}],
+    insight:v => v==='default' ? {tone:'bad', text:'Наниматели считывают нежелание за 15 минут разговора — даже если ты сам его не осознаёшь и называешь это иначе. Это может быть настоящей причиной отказов, а не резюме.'}
+               : v==='unsure' ? {tone:'warn', text:'Если сам не уверен, как это звучит со стороны — стоит явно продумать, чем именно эта роль лично тебе интересна, до следующего собеседования.'}
+               : {tone:'good', text:'Искренний интерес к роли считывается сразу — это работает на тебя ещё до первого вопроса.'} },
+  { id:'final_stage_reach', section:'interview', type:'select', required:true,
+    title:'До какого этапа обычно доходишь?',
+    options:[{v:'first',t:'Первый скрининг с HR'},{v:'middle',t:'Встреча с руководителем'},{v:'final',t:'Финал с собственником / топ-менеджментом'},{v:'offer',t:'Получаю офферы'}],
+    score:v => v==='offer' ? [{cat:'interview', delta:+14}] : v==='final' ? [{cat:'interview', delta:+4}] : v==='middle' ? [{cat:'interview', delta:-8}] : [{cat:'interview', delta:-14}],
+    insight:v => v==='middle' ? {tone:'bad', text:'Застреваешь на встрече с руководителем — часто это значит, что не хватает конкретики в ответах, когда спрашивают глубже про результаты.'}
+               : v==='first' ? {tone:'bad', text:'Не доходишь дальше HR-скрининга — вероятная причина не в опыте, а в том, как резюме и первые ответы читаются с той стороны.'}
+               : v==='offer' ? {tone:'good', text:'Офферы уже есть — узкое место скорее в переговорах или в выборе позиций, а не в самих собеседованиях.'} : null },
+  { id:'interview_prep', section:'interview', type:'yesno',
+    title:'Готовишься к конкретному собеседованию?',
+    sub:'Изучаешь компанию, продумываешь кейсы — а не идёшь «как есть».',
+    score:v => v==='yes' ? [{cat:'interview', delta:+8}] : [{cat:'interview', delta:-8}],
+    insight:v => v==='no' ? {tone:'warn', text:'Собеседование без подготовки конкурирует с теми, кто готовился — при прочих равных выбирают не самого опытного, а самого убедительного.'} : null },
+  { id:'answer_style', section:'interview', type:'select', required:true,
+    title:'Как отвечаешь на вопросы о своём опыте?',
+    options:[{v:'examples',t:'Конкретными примерами с цифрами'},{v:'general',t:'Общими фразами про ответственность и результат'}],
+    score:v => v==='examples' ? [{cat:'interview', delta:+12}] : [{cat:'interview', delta:-14}],
+    insight:v => v==='general' ? {tone:'bad', text:'Общие фразы звучат как заученный текст — наниматель не может проверить, было ли это на самом деле, и не запоминает тебя среди остальных кандидатов.'} : {tone:'good', text:'Конкретные примеры с цифрами — именно то, что решает исход финала.'} },
+  { id:'weakness_answer', section:'interview', type:'select', optional:true,
+    title:'Как отвечаешь на вопрос про слабые стороны?',
+    options:[{v:'honest',t:'Честно называю реальную и как с ней работаю'},{v:'cliche',t:'Говорю что-то формальное вроде «перфекционизм»'},{v:'avoid',t:'Ухожу от ответа'}],
+    score:v => v==='honest' ? [{cat:'interview', delta:+6}] : [{cat:'interview', delta:-6}],
+    insight:v => v==='cliche' || v==='avoid' ? {tone:'warn', text:'Заготовленный «безопасный» ответ считывается сразу — опытный наниматель слышал его сотни раз и делает вывод не в твою пользу.'} : null },
+  { id:'rejection_reason_known', section:'interview', type:'yesno', required:true,
+    title:'Знаешь настоящую причину хотя бы одного своего отказа?',
+    score:v => v==='yes' ? [{cat:'interview', delta:+10}] : [{cat:'interview', delta:-16}],
+    insight:v => v==='no' ? {tone:'bad', text:'Большинство кандидатов никогда не узнают реальную причину отказа — работодатели её не говорят. Ты действуешь вслепую, рискуя повторять одну и ту же ошибку.'} : null },
+  { id:'mock_interview', section:'interview', type:'yesno',
+    title:'Проходил(а) тренировочное собеседование с честной обратной связью?',
+    score:v => v==='yes' ? [{cat:'interview', delta:+8}] : [{cat:'interview', delta:-6}],
+    insight:v => v==='no' ? {tone:'warn', text:'Без стороннего взгляда сложно заметить свои же паттерны — то, что мешает, обычно незаметно изнутри.'} : null },
+  { id:'silence_reaction', section:'interview', type:'select', optional:true,
+    title:'Что делаешь, если на финале — пауза или сложный вопрос без готового ответа?',
+    options:[{v:'think',t:'Беру паузу, формулирую вслух'},{v:'fill',t:'Тут же начинаю говорить, лишь бы не молчать'},{v:'panic',t:'Теряюсь'}],
+    score:v => v==='think' ? [{cat:'interview', delta:+6}] : v==='panic' ? [{cat:'interview', delta:-8}] : [{cat:'interview', delta:-3}],
+    insight:v => v==='panic' ? {tone:'bad', text:'Потеря самообладания на сложном вопросе запоминается сильнее, чем сам вопрос — это то, что чаще всего решает исход в голове у нанимателя.'} : null },
+  { id:'hard_stages', section:'interview', type:'chips', optional:true,
+    title:'Какие этапы отбора даются тяжелее всего?',
+    sub:'Можно выбрать несколько.',
+    options:[{v:'phone',t:'Первый созвон с HR'},{v:'case',t:'Кейсы / тестовое задание'},{v:'panel',t:'Встреча с несколькими людьми сразу'},{v:'salary',t:'Разговор об окладе'},{v:'none',t:'Все даются одинаково'}],
+    score:v => { const arr=v||[]; const d=[]; if(arr.includes('salary')) d.push({cat:'negotiation', delta:-6}); if(arr.includes('panel')) d.push({cat:'interview', delta:-4}); return d; },
+    insight:v => (v||[]).includes('salary') ? {tone:'warn', text:'Ты сам(а) называешь разговор об окладе сложным местом — переговоры не даются интуитивно почти никому, это тренируемый навык, а не врождённая черта.'} : null },
+
+  { id:'salary_first_move', section:'negotiation', type:'select', required:true,
+    title:'Кто первым называет цифру оклада на собеседовании?',
+    options:[{v:'me_confident',t:'Я — называю вилку и обосновываю'},{v:'me_unsure',t:'Я — но теряюсь, если спрашивают «почему столько»'},{v:'them',t:'Жду, что предложат'}],
+    score:v => v==='me_confident' ? [{cat:'negotiation', delta:+12}] : v==='me_unsure' ? [{cat:'negotiation', delta:-4}] : [{cat:'negotiation', delta:-12}],
+    insight:v => v==='them' ? {tone:'warn', text:'Тот, кто называет цифру первым, задаёт рамку переговоров. Ожидание чужого предложения — это отказ от инициативы ещё до старта разговора.'} : null },
+  { id:'justify_salary', section:'negotiation', type:'yesno', required:true,
+    title:'Можешь за 30 секунд объяснить, почему стоишь заявленный оклад?',
+    sub:'Без общих слов — конкретной аргументацией.',
+    score:v => v==='yes' ? [{cat:'negotiation', delta:+12}] : [{cat:'negotiation', delta:-14}],
+    insight:v => v==='no' ? {tone:'bad', text:'Если аргумент не готов заранее, на собеседовании он не появится сам — вопрос «почему столько» застаёт врасплох, и оклад падает до того, что предложат.'} : null },
+  { id:'negotiation_attempted', section:'negotiation', type:'yesno',
+    title:'Хоть раз пытался(ась) торговаться после оффера?',
+    sub:'А не сразу соглашался(ась) на первую цифру.',
+    score:v => v==='yes' ? [{cat:'negotiation', delta:+8}] : [{cat:'negotiation', delta:-6}],
+    insight:v => v==='no' ? {tone:'warn', text:'Первая цифра почти всегда не последняя — работодатель закладывает пространство для торга по умолчанию, соглашаться сразу значит не использовать его.'} : null },
+  { id:'below_market_accepted', section:'negotiation', type:'yesno', optional:true,
+    title:'Соглашался(ась) на оклад ниже своего рынка «от усталости»?',
+    score:v => v==='yes' ? [{cat:'negotiation', delta:-8}] : [],
+    insight:v => v==='yes' ? {tone:'bad', text:'Оклад «от усталости» имеет свойство становиться новой точкой отсчёта — следующий работодатель будет отталкиваться уже от него, а не от твоего реального рынка.'} : null },
+  { id:'counteroffer_reaction', section:'negotiation', type:'select', optional:true,
+    title:'Что делаешь, если предлагают оклад ниже названного тобой?',
+    options:[{v:'walk',t:'Называю аргументы и жду встречного шага'},{v:'accept',t:'Соглашаюсь, чтобы не потерять оффер'},{v:'leave',t:'Сразу отказываюсь'}],
+    score:v => v==='walk' ? [{cat:'negotiation', delta:+6}] : v==='accept' ? [{cat:'negotiation', delta:-6}] : [],
+    insight:v => v==='accept' ? {tone:'warn', text:'Согласие из страха потерять оффер обычно означает: в следующий раз предложат ещё ниже — переговорную позицию один раз сдать легко, вернуть трудно.'} : null },
+
+  { id:'usp_candidate', section:'final', type:'textarea', optional:true,
+    title:'Чем ты объективно отличаешься от других кандидатов на эту позицию?',
+    sub:'Своими словами, одним-двумя предложениями.',
+    score:v => v && v.trim().length > 15 ? [{cat:'positioning', delta:+10}] : [{cat:'positioning', delta:-10}],
+    insight:v => (!v || v.trim().length <= 15) ? {tone:'warn', text:'Если не можешь сформулировать своё отличие за 10 секунд себе — на собеседовании этого тем более не считают за отведённые 40 минут.'} : {tone:'good', text:'Есть чёткая формулировка отличия — проверим, звучит ли она так же уверенно вслух.'} },
+  { id:'network_recruiters', section:'final', type:'yesno',
+    title:'Есть выходы на рекрутёров или руководителей напрямую?',
+    sub:'Не только отклики через hh.ru.',
+    score:v => v==='yes' ? [{cat:'positioning', delta:+10}] : [{cat:'positioning', delta:-8}],
+    insight:v => v==='no' ? {tone:'warn', text:'Большая часть вакансий такого уровня закрывается через личные связи и рекомендации ещё до публикации — конкуренция там в разы меньше, чем в открытом отклике.'} : null },
+  { id:'if_nothing_changes', section:'final', type:'select', required:true,
+    title:'Что будет, если ничего не менять в подходе к поиску следующие 3 месяца?',
+    options:[{v:'same',t:'Останусь на том же месте'},{v:'worse',t:'Соглашусь на оклад ниже рынка от усталости'},{v:'figure_out',t:'Само разрешится'},{v:'sure',t:'Уверен(а), что скоро будет оффер'}],
+    score:v => v==='worse' ? [{cat:'positioning', delta:-8}] : v==='same' ? [{cat:'positioning', delta:-3}] : [],
+    insight:v => v==='worse' ? {tone:'bad', text:'Ты сам(а) прогнозируешь, что согласишься на меньшее от усталости — это не приговор, а сигнал: подход стоит менять сейчас, а не после этого шага.'} : null },
+  { id:'one_fix', section:'final', type:'select', required:true,
+    title:'Если бы можно было исправить только одну вещь перед следующим собеседованием — что?',
+    sub:'Финальный вопрос скана.',
+    options:[{v:'resume',t:'Резюме'},{v:'interview_answers',t:'Ответы на собеседовании'},{v:'salary_talk',t:'Переговоры об окладе'},{v:'confidence',t:'Уверенность в себе'},{v:'dont_know',t:'Не знаю — в этом и вопрос'}] }
+];
+
+const State = {
+  answers: {}, cursor: 0, started: false, finished: false,
+  visibleQuestions(){ return QUESTIONS.filter(q => !q.when || q.when(this.answers)); },
+  current(){ return this.visibleQuestions()[this.cursor] || null; },
+  progress(){ const vis = this.visibleQuestions(); if (this.finished) return 100; if (!vis.length) return 0; return Math.round(this.cursor / vis.length * 100); },
+  reset(){ this.answers = {}; this.cursor = 0; this.started = false; this.finished = false; }
+};
+
+const Scoring = {
+  BASE: 62, MIN_EVIDENCE: 2, MIN_READY_WEIGHT: .5,
+  categories(){
+    const cats = {};
+    Object.keys(CAT_LABELS).forEach(k => cats[k] = { score: Scoring.BASE, touched:false, ev:0 });
+    for (const q of State.visibleQuestions()){
+      if (!(q.id in State.answers) || !q.score) continue;
+      const deltas = q.score(State.answers[q.id], State.answers) || [];
+      for (const d of deltas){ cats[d.cat].score += d.delta; cats[d.cat].touched = true; cats[d.cat].ev += 1; }
+    }
+    Object.values(cats).forEach(c => { c.score = Math.max(0, Math.min(100, Math.round(c.score))); c.ready = c.ev >= Scoring.MIN_EVIDENCE; });
+    return cats;
+  },
+  index(force = false){
+    const cats = this.categories(); let sum = 0, wsum = 0;
+    for (const [k, c] of Object.entries(cats)){
+      if (!(force ? c.touched : c.ready)) continue;
+      sum += c.score * C.WEIGHTS[k]; wsum += C.WEIGHTS[k];
+    }
+    if (!wsum) return null;
+    if (!force && wsum < this.MIN_READY_WEIGHT) return null;
+    return Math.round(sum / wsum);
+  },
+  coverage(){ const vis = State.visibleQuestions(); if (!vis.length) return 0; const answered = vis.filter(q => q.id in State.answers).length; return Math.round(answered / vis.length * 100); },
+  zone(v){ return v >= 80 ? 'good' : v >= 60 ? 'warn' : 'bad'; },
+  verdict(v){
+    if (v === null) return ['Сканирование…','Данных пока недостаточно.'];
+    if (v >= 80) return ['Готов(а) к офферу','Сильная база: резюме, ответы и переговоры работают на тебя. Точки роста — в деталях, а не в фундаменте.'];
+    if (v >= 60) return ['Близко, но не хватает системности','Есть на чём стоять, но один-два барьера регулярно съедают результат на финальных этапах.'];
+    if (v >= 40) return ['Действуешь вслепую','Отклики и собеседования идут, но без понимания настоящих причин отказа — результат случаен, а не управляем.'];
+    return ['Красная зона','Сразу несколько базовых вещей — резюме, ответы, переговоры — работают против тебя одновременно.'];
+  }
+};
+
+const GapModel = {
+  num(id){ const v = State.answers[id]; const n = Number(v); return isFinite(n) && v !== '' && v !== null && v !== undefined ? n : null; },
+  gapAnnual(){ const cur = this.num('current_salary'), tgt = this.num('target_salary'); if (cur===null||tgt===null) return 0; return Math.max(0, tgt-cur)*12; },
+  waitingCost(){ const gap = this.gapAnnual(); const months = this.num('search_months'); if (!gap || !months) return 0; return Math.round(gap/12*months); },
+  consistency(){
+    const cur = this.num('current_salary'), tgt = this.num('target_salary');
+    if (cur===null || tgt===null) return null;
+    if (tgt < cur) return { text:`Целевой оклад (${Fmt.money(tgt)}) ниже текущего (${Fmt.money(cur)}). Если это осознанный шаг — смена сферы или формата работы — это нормально. Если нет, проверь цифры.` };
+    if (cur>0 && tgt/cur >= 3) return { text:`Целевой оклад в ${(tgt/cur).toFixed(1)}× больше текущего. Такой скачок редко закрывается одними переговорами — обычно нужна смена уровня позиции или несколько шагов. Проверь, не перепутаны ли цифры.` };
+    return null;
+  }
+};
+
+const Constraint = {
+  detect(){
+    const a = State.answers, flags = [];
+    const add = (p, name, why) => flags.push({p, name, why});
+    if (a.role_energy === 'default')
+      add(105, 'Внутреннее нежелание', 'Наниматель считывает нежелание за 15 минут разговора, даже когда кандидат сам его не осознаёт. Это может быть настоящей причиной отказов — раньше, чем резюме или ответы.');
+    if (a.rejection_reason_known === 'no' && ['middle','final'].includes(a.final_stage_reach))
+      add(100, 'Не знаешь причину отказов', 'Ты доходишь до серьёзных этапов, но не понимаешь, что именно решает исход — значит, каждый следующий собес рискует повторить ту же ошибку вслепую.');
+    if (a.final_stage_reach === 'first')
+      add(96, 'Резюме', 'Не доходишь дальше скрининга с HR — барьер на входе, ещё до разговора с руководителем.');
+    if (a.answer_style === 'general' && ['middle','final'].includes(a.final_stage_reach))
+      add(92, 'Ответы на собеседовании', 'Общие фразы вместо конкретных примеров — на финальных этапах именно это чаще всего решает исход не в твою пользу.');
+    if (a.justify_salary === 'no')
+      add(88, 'Переговоры об окладе', 'Нет готового ответа на «почему именно такой оклад» — без аргумента цифра снижается до того, что предложат первым.');
+    if (a.salary_first_move === 'them' && a.justify_salary !== 'no')
+      add(84, 'Переговоры об окладе', 'Отдаёшь инициативу в разговоре об окладе работодателю — рамку переговоров задаёт тот, кто называет цифру первым.');
+    if (a.resume_numbers === 'no' && ['lt5','r5_15'].includes(a.resume_response_rate))
+      add(80, 'Резюме', 'Резюме без цифр результатов при низком отклике — вероятная причина того, что HR не видит повода пригласить на собеседование.');
+    if (a.mock_interview === 'no' && ['several','many'].includes(a.rejections_recent))
+      add(75, 'Подготовка к собеседованию', 'Несколько отказов подряд без тренировочного собеседования — паттерн ошибки повторяется, потому что его некому показать со стороны.');
+    if (a.usp_candidate && a.usp_candidate.trim().length <= 15)
+      add(70, 'Позиционирование', 'Нет чёткой формулировки собственного отличия — на финале это звучит как «такой же, как остальные».');
+    if (a.below_market_accepted === 'yes')
+      add(65, 'Переговоры об окладе', 'Уже был случай согласия на оклад ниже рынка — без работы над аргументацией паттерн повторится.');
+    if (a.resume_tailored === 'no')
+      add(60, 'Резюме', 'Одно резюме на все вакансии — оно не отвечает ни на один запрос конкретно.');
+    if (a.network_recruiters === 'no')
+      add(55, 'Позиционирование', 'Поиск идёт только через открытые отклики — доступна лишь часть рынка вакансий на эту позицию.');
+    if (flags.length){ flags.sort((x,y) => y.p - x.p); return { name: flags[0].name, why: flags[0].why }; }
+    const cats = Scoring.categories();
+    const touched = Object.entries(cats).filter(([,c]) => c.ready);
+    if (!touched.length) return null;
+    touched.sort((x,y) => x[1].score - y[1].score);
+    const [key, c] = touched[0];
+    if (c.score >= 75) return { name:'Не критично', why:'Явного барьера не видно — слабейшая категория: ' + CAT_LABELS[key].toLowerCase() + '.' };
+    const why = {
+      resume:'Резюме — самое слабое место. Оно решает, дойдёшь ли ты вообще до разговора.',
+      interview:'Ответы на собеседовании проседают — дыра между «дошёл до финала» и «получил оффер».',
+      negotiation:'Переговоры об окладе — слабое звено: даже хороший оффер рискует прийти ниже реальной цены.',
+      positioning:'Нет чёткого позиционирования — сложно объяснить, почему стоит выбрать именно тебя.'
+    }[key];
+    return { name: CAT_LABELS[key], why };
+  }
+};
+
+const Problems = {
+  structural(){
+    const a = State.answers, out = [];
+    const add = (sev, title, detail) => out.push({sev, title, detail});
+    if (a.role_energy === 'default') add(2,'Нет искреннего интереса к роли','Считывается за 15 минут разговора, даже когда сам этого не осознаёшь — раньше, чем резюме или ответы.');
+    if (a.resume_length === 'three_plus') add(1,'Резюме длиннее двух страниц','Ключевые цифры теряются в тексте — на управленческих и менеджерских позициях такое резюме часто не дочитывают.');
+    if (a.cover_message === 'no') add(1,'Нет сопроводительного сообщения','Пустой отклик легко потерять среди десятков таких же.');
+    if (a.profile_visible === 'no') add(2,'Профиль скрыт от рекрутёров','Половина рынка вакансий не видит тебя вообще.');
+    if (a.interview_prep === 'no') add(2,'Нет подготовки к конкретному собеседованию','При прочих равных выбирают не самого опытного, а самого убедительного.');
+    if (a.weakness_answer === 'cliche' || a.weakness_answer === 'avoid') add(1,'Заготовленный ответ про слабые стороны','Считывается сразу — опытный наниматель слышал такой ответ сотни раз.');
+    if (a.silence_reaction === 'panic') add(2,'Теряешься на сложном вопросе','Потеря самообладания запоминается сильнее, чем сам вопрос.');
+    if (a.negotiation_attempted === 'no') add(1,'Не пробовал(а) торговаться после оффера','Первая цифра почти всегда не последняя — работодатель закладывает пространство для торга.');
+    if (a.counteroffer_reaction === 'accept') add(2,'Соглашаешься на заниженный оффер из страха его потерять','Сдать переговорную позицию легко, вернуть — трудно.');
+    if (a.mock_interview === 'no') add(1,'Нет тренировочного собеседования','Свои же паттерны ошибок незаметны изнутри без стороннего взгляда.');
+    if (a.network_recruiters === 'no') add(1,'Нет прямых выходов на рекрутёров','Поиск идёт только через открытый рынок откликов — самый конкурентный канал.');
+    return out;
+  },
+  top(n = 6){ return this.structural().sort((x,y)=>y.sev-x.sev).slice(0,n).map(p => ({title:p.title, detail:p.detail})); }
+};
+
+const Recs = {
+  build(){
+    const a = State.answers, out = [];
+    const add = (p, text) => out.push({p, text});
+    if (a.role_energy === 'default') add(1,'Честно ответить себе, зачем именно эта роль лично тебе — до следующего собеседования. Наниматель считывает нежелание, даже когда ты сам его не признаёшь.');
+    if (a.rejection_reason_known === 'no') add(1,'Пройти тайный разбор с человеком, который сам нанимал на эту позицию — узнать реальную причину отказов, а не гадать.');
+    if (a.justify_salary === 'no') add(1,'Подготовить чёткий 30-секундный ответ на «почему именно такой оклад» — с цифрами результатов, а не общими словами.');
+    if (a.answer_style === 'general') add(1,'Переписать 3–5 ключевых историй из опыта в формате «ситуация → действие → результат в цифрах» и отрепетировать вслух.');
+    if (a.final_stage_reach === 'first') add(1,'Пересобрать резюме под конкретную вакансию: цифры результатов — в первых строчках, а не в конце.');
+    if (a.resume_numbers === 'no') add(2,'Добавить в резюме конкретные цифры: рост выручки, % выполнения плана, размер команды.');
+    if (a.mock_interview === 'no') add(2,'Пройти тренировочное собеседование с человеком, который даст честную обратную связь, а не «звучит неплохо».');
+    if (a.salary_first_move === 'them') add(2,'Заранее сформулировать вилку оклада и называть её первым(ой), а не ждать предложения.');
+    if (a.profile_visible === 'no') add(2,'Открыть профиль на hh.ru для просмотра рекрутёрами — сейчас тебя не видит половина рынка.');
+    if (a.network_recruiters === 'no') add(3,'Начать выходить на рекрутёров и руководителей напрямую, не только через отклики на hh.ru.');
+    if (a.usp_candidate && a.usp_candidate.trim().length <= 15) add(3,'Сформулировать за 10 секунд, чем ты объективно отличаешься от других кандидатов на эту позицию.');
+    if (a.below_market_accepted === 'yes') add(3,'На следующем оффере не соглашаться сразу — взять паузу и назвать встречный аргумент.');
+    if (!out.length) add(1,'База сильная. Следующий уровень — отработать конкретные кейсы под целевую вакансию и отрепетировать переговоры по окладу.');
+    out.sort((x,y)=>x.p-y.p);
+    return out.slice(0,7).map(r=>r.text);
+  }
+};
+
+const Fmt = { money(v){ return new Intl.NumberFormat('ru-RU').format(Math.round(v)) + ' ₽'; }, moneyYear(v){ return this.money(v) + ' / год'; } };
+
+const Dashboard = {
+  els:{}, animState:{ index:0, gap:0 },
+  init(){
+    const $ = id => document.getElementById(id);
+    this.els = { gaugeVal:$('gaugeVal'), indexNum:$('indexNum'), indexVerdict:$('indexVerdict'), indexDesc:$('indexDesc'),
+      catRows:$('catRows'), constraintName:$('constraintName'), constraintWhy:$('constraintWhy'),
+      gapNum:$('gapNum'), gapSub:$('gapSub'), waitingNote:$('waitingNote'), barrierList:$('barrierList'), findRows:$('findRows'), findCount:$('findCount'), sanityWarn:$('sanityWarn') };
+    const CIRC = 2*Math.PI*70; this.els.gaugeVal.style.strokeDasharray = CIRC; this.els.gaugeVal.style.strokeDashoffset = CIRC;
+    this.renderCats(Scoring.categories());
+  },
+  colorVar(zone){ return zone==='good' ? 'var(--good)' : zone==='warn' ? 'var(--warn)' : 'var(--bad)'; },
+  tween(from, to, ms, cb){ const t0 = performance.now(); const step = t => { const k = Math.min(1,(t-t0)/ms), e = 1-Math.pow(1-k,3); cb(from + (to-from)*e); if (k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); },
+  update(){
+    const idx = Scoring.index(); const CIRC = 2*Math.PI*70;
+    if (idx !== null){
+      const zone = Scoring.zone(idx);
+      this.els.gaugeVal.style.stroke = this.colorVar(zone);
+      this.els.gaugeVal.style.strokeDashoffset = CIRC * (1 - idx/100);
+      this.tween(this.animState.index, idx, 700, v => this.els.indexNum.textContent = Math.round(v));
+      this.animState.index = idx;
+      this.els.indexNum.className = 'sc-'+zone;
+      const [v,d] = Scoring.verdict(idx);
+      this.els.indexVerdict.textContent = v; this.els.indexDesc.textContent = d;
+    } else {
+      this.els.gaugeVal.style.strokeDashoffset = CIRC; this.els.indexNum.textContent = '—'; this.els.indexNum.className = ''; this.animState.index = 0;
+      this.els.indexVerdict.textContent = 'Сканирование…';
+      this.els.indexDesc.textContent = `Собрано ${Scoring.coverage()}% данных. Индекс появится, когда просканировано достаточно категорий.`;
+    }
+    this.renderCats(Scoring.categories());
+    const c = Constraint.detect();
+    if (c){ this.els.constraintName.textContent = c.name; this.els.constraintWhy.textContent = (State.finished ? '' : 'Предварительно: ') + c.why; }
+    else if (Object.keys(State.answers).length >= 1){ this.els.constraintName.textContent = 'Сканирую…'; this.els.constraintWhy.textContent = 'Красных флагов пока нет. Продолжаю искать барьер.'; }
+    const gap = GapModel.gapAnnual();
+    if (gap > 0){
+      this.tween(this.animState.gap, gap, 900, v => this.els.gapNum.textContent = Fmt.moneyYear(v));
+      this.animState.gap = gap;
+      this.els.gapSub.innerHTML = `≈ <b class="sc-good">${Fmt.money(gap/12)}</b> в месяц — разница между текущим и целевым окладом.`;
+    }
+    const waiting = GapModel.waitingCost();
+    if (waiting > 0){
+      this.els.waitingNote.innerHTML = `⏳ Уже упущено за ${GapModel.num('search_months')} мес. поиска: <b>${Fmt.money(waiting)}</b>`;
+      this.els.waitingNote.style.display = '';
+    } else { this.els.waitingNote.style.display = 'none'; }
+    const consist = GapModel.consistency();
+    if (consist){ this.els.sanityWarn.innerHTML = `<b>⚠ Проверь цифры.</b> ${consist.text}`; this.els.sanityWarn.style.display = ''; }
+    else { this.els.sanityWarn.style.display = 'none'; }
+    const probs = Problems.top(4);
+    this.els.barrierList.innerHTML = probs.length ? probs.map(p=>`<div class="barrier-row"><b>${p.title}</b><br>${p.detail}</div>`).join('') : '';
+    const feed = Feedback.collect();
+    if (feed.length){
+      const shown = this.findOpen ? feed.slice().reverse() : feed.slice(-4).reverse();
+      const row = f => { let t = f.text; if (!this.findOpen && t.length > 120) t = t.slice(0, 117) + '…'; return `<div class="find-row"><span class="find-dot ${f.tone}"></span><span>${t}</span></div>`; };
+      this.els.findRows.innerHTML = shown.map(row).join('') + (feed.length > 4 ? `<button class="find-toggle" id="findToggle">${this.findOpen ? 'Свернуть' : `Показать все ${feed.length}`}</button>` : '');
+      this.els.findCount.textContent = feed.length;
+      const tgl = document.getElementById('findToggle'); if (tgl) tgl.onclick = () => { this.findOpen = !this.findOpen; this.update(); };
+    } else { this.els.findRows.innerHTML = '<div class="empty-note">// пока чисто</div>'; this.els.findCount.textContent = ''; }
+  },
+  renderCats(cats){
+    this.els.catRows.innerHTML = Object.entries(CAT_LABELS).map(([k,label])=>{
+      const c = cats[k]; const zone = Scoring.zone(c.score); const w = c.ready ? c.score : 0; const num = c.ready ? c.score : '—';
+      return `<div class="cat-row"><span class="name">${label}</span><span class="cat-bar"><i style="width:${w}%;background:${this.colorVar(zone)}"></i></span><span class="num ${c.ready?'sc-'+zone:''}">${num}</span></div>`;
+    }).join('');
+  }
+};
+
+const Feedback = {
+  get(q, v, a){ if (q.insight){ const i = q.insight(v, a); if (i) return i; } return this.generic(q, v); },
+  collect(){
+    const feed = [];
+    for (const q of State.visibleQuestions()){
+      if (!(q.id in State.answers)) continue;
+      const f = this.get(q, State.answers[q.id], State.answers);
+      if (f && (f.tone === 'bad' || f.tone === 'warn')) feed.push({tone: f.tone, text: f.text.replace(/<[^>]+>/g,'')});
+    }
+    return feed;
+  },
+  generic(q, v){
+    if (q.type === 'yesno') return v === 'yes' ? {tone:'good', text:'Учтено — плюс к оценке.'} : {tone:'warn', text:'Зафиксировано как зона риска — уже в модели.'};
+    if (q.type === 'chips') return (v||[]).length ? {tone:'good', text:`Выбрано: ${v.length}. Учтено в модели.`} : {tone:'warn', text:'Ничего не выбрано — учтено как отсутствие данных.'};
+    if (v === '' || v == null) return {tone:'warn', text:'Пропущено. Тоже своего рода ответ.'};
+    return {tone:'good', text:'Принято — модель обновлена.'};
+  }
+};
+
+const FlowUI = {
+  els:{}, chipsBuffer:[],
+  init(){
+    const $ = id => document.getElementById(id);
+    this.els = { intro:$('introScreen'), qScreen:$('questionScreen'), cardHost:$('cardHost'), sectionTag:$('sectionTag'), sectionNav:$('sectionNav'),
+      insight:$('insightBox'), progressFill:$('progressFill'), progressLabel:$('progressLabel'), finalScreen:$('finalScreen') };
+    this.initSectionNav();
+    document.addEventListener('keydown', e => {
+      if (!State.started || State.finished) return;
+      const ae = document.activeElement;
+      if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA')) return;
+      const q = State.current(); if (!q) return;
+      if (q.type === 'select' || q.type === 'yesno'){
+        const opts = [...this.els.cardHost.querySelectorAll('.opt')]; let i = -1;
+        if (/^[1-9]$/.test(e.key)) i = Number(e.key) - 1;
+        if (q.type === 'yesno'){ if (/^[yYдД]$/.test(e.key)) i = 0; if (/^[nNнН]$/.test(e.key)) i = 1; }
+        if (i >= 0 && opts[i]){ e.preventDefault(); opts[i].click(); }
+      } else if (q.type === 'chips'){
+        if (/^[1-9]$/.test(e.key)){ const chips = [...this.els.cardHost.querySelectorAll('.chip')]; const i = Number(e.key) - 1; if (chips[i]){ e.preventDefault(); chips[i].click(); } }
+        if (e.key === 'Enter'){ e.preventDefault(); const next = document.getElementById('btnNext'); if (next) next.click(); }
+      }
+    });
+  },
+  initSectionNav(){
+    const keys = Object.keys(SECTION_LABELS);
+    this.els.sectionNav.innerHTML = keys.map(k => `<button type="button" data-section="${k}"><span>${SECTION_LABELS[k]}</span></button>`).join('');
+    this.els.sectionTag.innerHTML = `<span id="sectionTagText"></span><span class="chev">▾</span>`;
+    this.els.sectionTag.onclick = () => { const isOpen = this.els.sectionNav.classList.contains('open'); isOpen ? this.closeSectionNav() : this.openSectionNav(); };
+    this.els.sectionNav.onclick = e => { const btn = e.target.closest('button[data-section]'); if (!btn || btn.disabled) return; this.jumpToSection(btn.dataset.section); };
+    document.addEventListener('click', e => { if (!this.els.sectionTag.contains(e.target) && !this.els.sectionNav.contains(e.target)) this.closeSectionNav(); });
+  },
+  openSectionNav(){
+    const q = State.current(); if (!q) return;
+    const keys = Object.keys(SECTION_LABELS); const currentIdx = keys.indexOf(q.section);
+    this.els.sectionNav.querySelectorAll('button[data-section]').forEach(btn => {
+      const idx = keys.indexOf(btn.dataset.section);
+      btn.disabled = idx > currentIdx; btn.classList.toggle('current', idx === currentIdx);
+      btn.innerHTML = `<span>${SECTION_LABELS[btn.dataset.section]}</span>` + (idx === currentIdx ? '<small>сейчас</small>' : idx > currentIdx ? '<small>ещё не дошли</small>' : '');
+    });
+    this.els.sectionTag.classList.add('open'); this.els.sectionNav.classList.add('open');
+  },
+  closeSectionNav(){ this.els.sectionTag.classList.remove('open'); this.els.sectionNav.classList.remove('open'); },
+  jumpToSection(key){
+    const vis = State.visibleQuestions(); const idx = vis.findIndex(q => q.section === key); if (idx < 0) return;
+    this.closeSectionNav(); this.els.insight.style.display = 'none'; State.cursor = idx; this.render();
+  },
+  start(){
+    Session.ensure(); State.started = true; this.els.insight.style.display = 'none'; this.els.intro.style.display = 'none';
+    this.els.finalScreen.classList.remove('visible'); this.els.qScreen.style.display = 'block'; this.render();
+  },
+  progress(){ const p = State.progress(); this.els.progressFill.style.width = p+'%'; this.els.progressLabel.textContent = p+'%'; },
+  render(){
+    this.progress();
+    const q = State.current();
+    if (!q){ Final.show(); return; }
+    document.getElementById('sectionTagText').textContent = SECTION_LABELS[q.section];
+    this.chipsBuffer = Array.isArray(State.answers[q.id]) ? [...State.answers[q.id]] : [];
+    const vis = State.visibleQuestions();
+    const saved = State.answers[q.id];
+    const savedStr = (saved===undefined||saved===null) ? '' : saved;
+    let inputHTML = '';
+    switch(q.type){
+      case 'text': inputHTML = `<div class="q-input"><input type="text" id="qInput" placeholder="${q.placeholder||'Введите ответ…'}" value="${this.esc(savedStr)}" autocomplete="off"></div>`; break;
+      case 'textarea': inputHTML = `<div class="q-input"><textarea id="qInput" placeholder="${q.placeholder||'Ваш ответ…'}">${this.esc(savedStr)}</textarea></div>`; break;
+      case 'number': case 'percent':
+        inputHTML = `<div class="q-input unit-wrap"><input type="number" id="qInput" inputmode="numeric" min="0" ${q.type==='percent'?'max="100"':''} placeholder="0" value="${this.esc(savedStr)}"><span class="unit">${q.unit||''}</span></div>`; break;
+      case 'money':
+        inputHTML = `<div class="q-input unit-wrap"><input type="text" id="qInput" inputmode="numeric" placeholder="0" autocomplete="off" value="${savedStr!==''?new Intl.NumberFormat('ru-RU').format(Number(savedStr)):''}"><span class="unit">${q.unit||''}</span></div>`; break;
+      case 'select':
+        inputHTML = `<div class="opts">${q.options.map((o,i)=>`<button class="opt ${saved===o.v?'selected':''}" data-v="${o.v}"><span class="key">${i+1}</span><span>${o.t}${o.d?`<small>${o.d}</small>`:''}</span></button>`).join('')}</div>`; break;
+      case 'yesno':
+        inputHTML = `<div class="opts cols-2"><button class="opt ${saved==='yes'?'selected':''}" data-v="yes"><span class="key">Y</span><span>Да</span></button><button class="opt ${saved==='no'?'selected':''}" data-v="no"><span class="key">N</span><span>Нет</span></button></div>`; break;
+      case 'chips':
+        inputHTML = `<div class="chips">${q.options.map((o,i)=>`<button class="chip ${this.chipsBuffer.includes(o.v)?'selected':''}" data-v="${o.v}"><span class="key">${i+1}</span>${o.t}</button>`).join('')}</div>`; break;
+    }
+    const isInstant = q.type==='select' || q.type==='yesno';
+    this.els.cardHost.innerHTML = `<div class="qcard" id="qcard"><div class="q-count">Вопрос ${State.cursor+1} из ${vis.length}</div><div class="q-title">${q.title}</div>
+      ${q.sub?`<div class="q-sub">${q.sub}</div>`:''}
+      ${inputHTML}
+      <div class="q-nav">
+        ${State.cursor>0?'<button class="btn-back" id="btnBack">← Назад</button>':''}
+        <span class="spacer"></span>
+        ${q.optional?'<button class="btn-skip" id="btnSkip">Пропустить</button>':''}
+        ${!isInstant?`<span class="enter-hint">${q.type==='textarea'?'<kbd>Enter</kbd> — далее · <kbd>Shift+Enter</kbd> — абзац':'<kbd>Enter</kbd> — далее'}</span><button class="btn-primary" id="btnNext">Далее →</button>`:''}
+      </div></div>`;
+    if (q.type==='chips' && !document.getElementById('btnNext')){ const nav = this.els.cardHost.querySelector('.q-nav'); nav.insertAdjacentHTML('beforeend','<button class="btn-primary" id="btnNext">Далее →</button>'); }
+    this.bind(q);
+    const inp = document.getElementById('qInput'); if (inp) setTimeout(()=>inp.focus(),80);
+  },
+  bind(q){
+    const host = this.els.cardHost;
+    const back = document.getElementById('btnBack'); if (back) back.onclick = ()=>{ this.els.insight.style.display='none'; State.cursor = Math.max(0, State.cursor-1); this.render(); };
+    const skip = document.getElementById('btnSkip'); if (skip) skip.onclick = ()=>this.commit(q, q.type==='chips'?[]:'');
+    const next = document.getElementById('btnNext'); if (next) next.onclick = ()=>this.tryCommitInput(q);
+    if (q.type==='select' || q.type==='yesno'){
+      host.querySelectorAll('.opt').forEach(btn=>{ btn.onclick = ()=>{ host.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); this.commit(q, btn.dataset.v); }; });
+    }
+    if (q.type==='chips'){
+      host.querySelectorAll('.chip').forEach(chip=>{
+        chip.onclick = ()=>{
+          const v = chip.dataset.v;
+          if (v==='none'){ this.chipsBuffer = ['none']; }
+          else { this.chipsBuffer = this.chipsBuffer.filter(x=>x!=='none'); this.chipsBuffer.includes(v) ? this.chipsBuffer = this.chipsBuffer.filter(x=>x!==v) : this.chipsBuffer.push(v); }
+          host.querySelectorAll('.chip').forEach(c=>c.classList.toggle('selected', this.chipsBuffer.includes(c.dataset.v)));
+        };
+      });
+    }
+    const inp = document.getElementById('qInput');
+    if (inp){
+      inp.addEventListener('keydown', e=>{ if (e.key !== 'Enter') return; if (q.type==='textarea' && e.shiftKey) return; e.preventDefault(); this.tryCommitInput(q); });
+      if (q.type==='money'){ inp.addEventListener('input', ()=>{ const digits = inp.value.replace(/\D/g,'').slice(0,15); inp.value = digits ? new Intl.NumberFormat('ru-RU').format(Number(digits)) : ''; }); }
+    }
+  },
+  tryCommitInput(q){
+    if (q.type==='chips') return this.commit(q, [...this.chipsBuffer]);
+    const inp = document.getElementById('qInput'); if (!inp) return;
+    let v = inp.value.trim(); if (q.type==='money') v = v.replace(/\D/g,'');
+    if (q.required && v===''){ inp.style.borderColor='var(--bad)'; inp.focus(); return; }
+    if (['number','money','percent'].includes(q.type)){
+      if (v!==''){ v = Number(v); if (!isFinite(v)||v<0){ inp.style.borderColor='var(--bad)'; return; } if (q.type==='percent') v = Math.min(v,100); }
+      else v = '';
+    }
+    this.commit(q, v);
+  },
+  commit(q, value){
+    State.answers[q.id] = value; Storage.save(); Dashboard.update();
+    const ins = Feedback.get(q, value, State.answers);
+    const advance = ()=>{
+      const card = document.getElementById('qcard'); if (card) card.classList.add('leaving');
+      setTimeout(()=>{ const vis = State.visibleQuestions(); const pos = vis.findIndex(x=>x.id===q.id); State.cursor = pos+1; Storage.save(); this.render(); }, 240);
+    };
+    if (ins){ this.els.insight.className = 'insight '+(ins.tone||'warn'); this.els.insight.innerHTML = ins.text; this.els.insight.style.display = 'block';
+      setTimeout(advance, (ins.tone==='bad' ? 1700 : ins.tone==='warn' ? 1300 : 750)); } else advance();
+  },
+  esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+};
+
+const Final = {
+  show(){
+    State.finished = true; Storage.save(); FlowUI.els.qScreen.style.display = 'none';
+    const dash = document.getElementById('dash');
+    if (dash){ dash.style.display = 'none'; dash.parentElement.classList.add('no-dash'); }
+    FlowUI.progress();
+    const idx = Scoring.index(true) ?? 0;
+    const zone = Scoring.zone(idx);
+    const [verdict, vdesc] = Scoring.verdict(idx);
+    const c = Constraint.detect();
+    const gap = GapModel.gapAnnual();
+    const probs = Problems.top(5);
+    const recs = Recs.build();
+    const cats = Scoring.categories();
+    const a = State.answers;
+    const roleTxt = {management:'управленческую позицию', manager:'менеджерскую позицию', specialist:'позицию ведущего специалиста', other:'целевую позицию'}[a.target_role];
+    const blockerTxt = {resume:'резюме', interview:'ответы на собеседовании', negotiation:'переговоры об окладе', positioning:'позиционирование', dont_know:'не знали, в чём причина'}[a.main_blocker_guess];
+    const nothingTxt = {same:'останетесь на том же месте', worse:'согласитесь на оклад ниже рынка', figure_out:'само разрешится', sure:'скоро будет оффер'}[a.if_nothing_changes];
+    let mirror = '';
+    if (roleTxt || blockerTxt || nothingTxt){
+      const parts = [];
+      if (roleTxt) parts.push(`ты претендуешь на <b>${roleTxt}</b>`);
+      if (blockerTxt) parts.push(`своим предполагаемым барьером назвал(а): <b>${blockerTxt}</b>`);
+      if (nothingTxt) parts.push(`твой собственный прогноз при бездействии — <b>${nothingTxt}</b>`);
+      mirror = 'Это не наши слова — это твои ответы. ' + parts.join('. ') + '.';
+      if (gap > 0) mirror += ` Разрыв между текущим и целевым доходом — примерно <b class="sc-good">${Fmt.money(gap/12)}</b> в месяц.`;
+    }
+    const feedAll = Feedback.collect().sort((x,y)=>(x.tone==='bad'?0:1)-(y.tone==='bad'?0:1));
+    const el = FlowUI.els.finalScreen;
+    el.innerHTML = `
+      <div class="final-hero"><div class="final-grid"><div class="final-index"><b class="sc-${zone}">${idx}</b><span>индекс готовности / 100</span></div><div class="final-verdict"><div class="eyebrow">Диагноз · скан кандидата</div><h2>${verdict}</h2><p>${vdesc} Главный барьер — <b>${c?c.name.toLowerCase():'не определён'}</b>.${gap>0?` Разрыв между текущим и целевым окладом — <b class="sc-good">${Fmt.moneyYear(gap)}</b>.`:''}</p>
+            ${mirror?`<div class="mirror-quote">${mirror}</div>`:''}
+          </div></div></div><div class="final-cols"><div class="panel"><div class="panel-h">Главные барьеры${probs.length?` · ${probs.length}`:''}</div><ul class="list-num">${probs.map((p,i)=>`<li><span class="n">${i+1}</span><span><b>${p.title}</b>${p.detail?`<div class="prob-detail">${p.detail}</div>`:''}</span></li>`).join('')||'<li>Критичных барьеров не обнаружено — редкий случай.</li>'}</ul></div><div class="panel"><div class="panel-h">Категории</div><div class="cat-rows">${Object.entries(CAT_LABELS).map(([k,l])=>{
+            const cc=cats[k]; const z=Scoring.zone(cc.score);
+            return `<div class="cat-row"><span class="name">${l}</span><span class="cat-bar"><i style="width:${cc.touched?cc.score:0}%;background:${Dashboard.colorVar(z)}"></i></span><span class="num ${cc.touched?'sc-'+z:''}">${cc.touched?cc.score:'—'}</span></div>`;
+          }).join('')}</div></div><div class="panel gap-panel"><div class="panel-h">Разрыв в зарплате</div><div class="gap-num">${gap>0?Fmt.moneyYear(gap):'— ₽'}</div>
+          ${gap>0?`<div class="gap-sub">≈ <b class="sc-good">${Fmt.money(gap/12)}</b> в месяц между текущим и целевым окладом</div>`:''}
+          ${GapModel.waitingCost()>0?`<div class="waiting-note">⏳ Уже упущено за ${a.search_months} мес. поиска: <b>${Fmt.money(GapModel.waitingCost())}</b></div>`:''}</div></div><div class="panel" style="margin-bottom:22px"><div class="panel-h">Рекомендации: с чего начинать</div><ul class="list-num rec-list">${recs.map((r,i)=>`<li><span class="n">${i+1}</span><span>${r}</span></li>`).join('')}</ul></div>
+      ${feedAll.length ? `<div class="panel" style="margin-bottom:22px"><div class="panel-h">Полный лог сканера · ${feedAll.length} наход${feedAll.length%10===1&&feedAll.length%100!==11?'ка':[2,3,4].includes(feedAll.length%10)&&![12,13,14].includes(feedAll.length%100)?'ки':'ок'}</div><div class="find-grid">${feedAll.map(f=>`<div class="find-row"><span class="find-dot ${f.tone}"></span><span>${f.text}</span></div>`).join('')}</div></div>` : ''}
+      <div class="panel" style="margin-bottom:22px"><div class="panel-h">Почему этому можно верить</div><div class="founder-line"><b>Николай Клименко</b> — экс-коммерческий директор. Провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Этот скан устроен так же, как реально смотрят на кандидата с той стороны стола.</div></div><div class="cta-panel"><h3>Скан показал что. Разбор в Telegram покажет как</h3><p>15 минут — и разберём твой главный барьер предметно: конкретную причину отказов, а не общие советы.</p><div class="final-actions"><button class="btn-primary" id="btnBook">Написать в Telegram →</button><button class="btn-ghost" id="btnPDF">Скачать PDF-отчёт</button><button class="btn-ghost" id="btnRestart">Пройти заново</button></div>
+        <div class="ec-wrap" id="ecWrap">
+          <button type="button" class="ec-toggle" id="ecToggle">Не готов(а) в Telegram — прислать результат на почту →</button>
+          <div class="ec-form" id="ecForm" style="display:none">
+            <input type="text" id="ecName" placeholder="Как зовут">
+            <input type="text" id="ecContact" placeholder="Email или Telegram">
+            <button type="button" class="btn-secondary" id="ecSend">Прислать результат</button>
+          </div>
+          <div class="ec-note" id="ecNote" style="display:none">Откроется твой почтовый клиент с готовым письмом — просто нажми «Отправить».</div>
+        </div>
+      </div>`;
+    el.classList.add('visible');
+    window.scrollTo({top:0, behavior:'smooth'});
+    document.getElementById('btnPDF').onclick = ()=>Report.printPDF();
+    document.getElementById('btnBook').onclick = ()=>window.open(C.BOOKING_URL, '_blank');
+    document.getElementById('btnRestart').onclick = ()=>{ if(confirm('Начать скан заново? Текущие ответы будут удалены.')){ Storage.clear(); location.reload(); } };
+    document.getElementById('ecToggle').onclick = function(){ this.style.display = 'none'; document.getElementById('ecForm').style.display = 'flex'; document.getElementById('ecNote').style.display = 'block'; };
+    document.getElementById('ecSend').onclick = ()=>{
+      const name = document.getElementById('ecName').value.trim();
+      const contact = document.getElementById('ecContact').value.trim();
+      if (!contact){ document.getElementById('ecContact').style.borderColor = 'var(--bad)'; return; }
+      const subject = `Результат скана NAIMED — ${roleTxt || 'кандидат'}, индекс ${idx}`;
+      const bodyLines = [
+        `Имя: ${name || '—'}`, `Контакт: ${contact}`, '',
+        `Индекс готовности: ${idx} / 100`,
+        `Главный барьер: ${c ? c.name : '—'}`,
+        gap > 0 ? `Разрыв в зарплате: ${Fmt.moneyYear(gap)}` : '',
+        `Целевая позиция: ${roleTxt || '—'}`
+      ].filter(Boolean);
+      const body = bodyLines.join('\n');
+      window.location.href = `mailto:info@naimed.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
+  }
+};
+
+const Report = {
+  printPDF(){
+    const idx = Scoring.index(true) ?? 0;
+    const [verdictTxt, verdictDesc] = Scoring.verdict(idx);
+    const c = Constraint.detect();
+    const gap = GapModel.gapAnnual();
+    const consist = GapModel.consistency();
+    const cats = Scoring.categories();
+    const probs = Problems.top(6);
+    const recs = Recs.build();
+    const date = new Date().toLocaleDateString('ru-RU', {day:'numeric', month:'long', year:'numeric'});
+    const a = State.answers;
+    const roleTxt = {management:'Управленческая позиция', manager:'Менеджерская позиция', specialist:'Ведущий специалист', other:'—'}[a.target_role] || '—';
+    const zc = v => v >= 80 ? 'var(--pr-accent)' : v >= 60 ? '#B8863A' : 'var(--pr-bad)';
+    const CIRC = (2 * Math.PI * 52);
+
+    const feedAll = Feedback.collect().sort((x,y)=>(x.tone==='bad'?0:1)-(y.tone==='bad'?0:1));
+    const nothingTxt = {same:'останетесь на том же месте', worse:'согласитесь на оклад ниже рынка', figure_out:'само разрешится', sure:'скоро будет оффер'}[a.if_nothing_changes];
+    let quote = '';
+    if (nothingTxt){ quote = `Это не наши слова — это твои ответы: собственный прогноз при бездействии — «${nothingTxt}».` + (gap>0 ? ` Разрыв между текущим и целевым доходом ≈ ${Fmt.money(gap/12)} в месяц.` : ''); }
+
+    const pageHead = (n, label) => `<div class="pr-h"><div class="pr-h-l"><b>NAIMED</b><span>СКАН КАНДИДАТА</span></div><div class="pr-h-r">${String(n).padStart(2,'0')} / ${label}</div></div>`;
+    const pageFoot = (n) => `<div class="pr-f"><span>Скан подготовлен ${date}</span><span>Страница ${n} из ${TOTAL_PAGES}</span></div>`;
+    const hasLog = feedAll.length > 0;
+    const TOTAL_PAGES = 6 + (hasLog ? 1 : 0);
+
+    const p1 = `<div class="pr-page pr-cover"><div class="pr-cover-in">
+      <div class="pr-cover-top"><div class="pr-cover-logo">NAIMED<span>СКАН КАНДИДАТА</span></div><div class="pr-cover-meta">${date}<br>Инсайдерский разбор</div></div>
+      <div class="pr-cover-mid">
+        <div class="pr-cover-kicker">Диагностика кандидата</div>
+        <div class="pr-cover-title">Что реально тормозит тебя на пути к офферу — без домыслов</div>
+        <div class="pr-cover-company">${roleTxt}</div>
+        <div class="pr-cover-sub">${a.experience_years?`опыт: ${a.experience_years} лет`:''}</div>
+      </div>
+      <div class="pr-cover-bottom">
+        <div class="pr-cover-index"><b style="color:${zc(idx)}">${idx}</b><span>индекс готовности к офферу из 100 · ${verdictTxt.toLowerCase()}</span></div>
+        <div class="pr-cover-confid">Подготовлено персонально. Документ содержит личную оценку и не подлежит распространению третьим лицам.</div>
+      </div>
+    </div></div>`;
+
+    const p2 = `<div class="pr-page">${pageHead(1,'EXECUTIVE SUMMARY')}<div class="pr-body">
+      <div class="pr-tag">Итог скана</div>
+      <div class="pr-title">${verdictTxt}</div>
+      <div class="pr-lede">${verdictDesc}${c ? ` Главный барьер — <b>${c.name.toLowerCase()}</b>: ${c.why}` : ''}</div>
+      <div class="pr-sum-grid">
+        <div class="pr-gauge"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#EFEAE0" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="${zc(idx)}" stroke-width="10" stroke-linecap="round"
+              stroke-dasharray="${CIRC.toFixed(1)}" stroke-dashoffset="${(CIRC * (1 - idx/100)).toFixed(1)}"/></svg><b style="color:${zc(idx)}">${idx}</b></div>
+        <div><div class="pr-stat-row">
+          <div class="pr-stat bad"><div class="k">Разрыв в зарплате</div><div class="v">${gap>0?Fmt.moneyYear(gap):'—'}</div>${gap>0?`<div class="d">≈ ${Fmt.money(gap/12)} в месяц</div>`:''}</div>
+          <div class="pr-stat good"><div class="k">Главный барьер</div><div class="v" style="font-size:16px">${c?c.name:'—'}</div><div class="d">решается в первую очередь</div></div>
+        </div></div>
+      </div>
+      ${quote ? `<div class="pr-quote">${quote}</div>` : ''}
+      <div class="pr-card"><div class="pr-h2">Три главные причины <i>·</i></div><ul class="pr-list pr-red">${probs.slice(0,3).map((p,i)=>`<li><span class="n">${i+1}</span><span><b class="hd">${p.title}</b></span></li>`).join('') || '<li>Критичных причин не обнаружено — редкий случай.</li>'}</ul></div>
+    </div>${pageFoot(1)}</div>`;
+
+    const p3 = `<div class="pr-page">${pageHead(2,'КАТЕГОРИИ')}<div class="pr-body">
+      <div class="pr-tag">Диагностика по категориям</div>
+      <div class="pr-title">Четыре категории, которые определяют оффер</div>
+      <div class="pr-lede">Каждая категория оценена независимо. Слабое место здесь — не повод для вины, а точка приложения усилий с наибольшей отдачей.</div>
+      <div class="pr-grid2">
+        <div class="pr-card"><div class="pr-h2">Оценка по категориям <i>·</i></div><div class="pr-bars">${Object.entries(CAT_LABELS).map(([k,l])=>{
+            const cc = cats[k];
+            return `<div><div class="lbl">${l}<b style="color:${cc.touched?zc(cc.score):'#B8AC93'}">${cc.touched?cc.score:'—'}</b></div><div class="pr-bar"><i style="width:${cc.touched?cc.score:0}%;background:${zc(cc.score)}"></i></div></div>`;
+          }).join('')}</div></div>
+        <div class="pr-card"><div class="pr-h2">Главные находки <i>·</i></div><ul class="pr-list pr-red">${probs.slice(0,4).map((p,i)=>`<li><span class="n">${i+1}</span><span><b class="hd">${p.title}</b>${p.detail?`<span class="detail">${p.detail}</span>`:''}</span></li>`).join('') || '<li>Критичных находок нет.</li>'}</ul></div>
+      </div>
+    </div>${pageFoot(2)}</div>`;
+
+    const p4 = `<div class="pr-page">${pageHead(3,'РАЗРЫВ В ЗАРПЛАТЕ')}<div class="pr-body">
+      <div class="pr-tag">Цена бездействия</div>
+      <div class="pr-title">Во что это обходится в рублях</div>
+      <div class="pr-lede">Разрыв считается по твоим же цифрам: текущий и целевой оклад. Не оценка рынка — твоя собственная цель.</div>
+      ${consist ? `<div class="pr-lede" style="color:var(--pr-bad);border:1px dashed var(--pr-bad);padding:10px 14px;border-radius:3px">⚠ ${consist.text}</div>` : ''}
+      <div class="pr-grid2">
+        <div class="pr-card"><div class="pr-gapbox"><div class="g">${gap>0?Fmt.moneyYear(gap):'— ₽'}</div><div class="s">разница между текущим и целевым окладом</div>
+          <div class="rows"><div><div class="k">Текущий</div><div class="v">${a.current_salary?Fmt.money(Number(a.current_salary))+'/мес':'—'}</div></div><div><div class="k">Целевой</div><div class="v">${a.target_salary?Fmt.money(Number(a.target_salary))+'/мес':'—'}</div></div>${GapModel.waitingCost()>0?`<div><div class="k">Уже упущено</div><div class="v" style="color:var(--pr-bad)">${Fmt.money(GapModel.waitingCost())}</div></div>`:''}</div>
+        </div></div>
+        <div class="pr-card"><div class="pr-h2">Что мешает его закрыть <i>·</i></div><ul class="pr-list">${probs.length ? probs.slice(0,5).map(p=>`<li><span class="n">•</span><span><b class="hd">${p.title}</b>${p.detail?`<span class="detail">${p.detail}</span>`:''}</span></li>`).join('') : '<li><span>Явных барьеров не выявлено.</span></li>'}</ul></div>
+      </div>
+    </div>${pageFoot(3)}</div>`;
+
+    const p5 = `<div class="pr-page">${pageHead(4,'ROADMAP')}<div class="pr-body">
+      <div class="pr-tag">С чего начинать</div>
+      <div class="pr-title">Порядок действий по приоритету</div>
+      <div class="pr-card" style="margin-bottom:16px"><div class="pr-h2">Рекомендации <i>·</i></div><ul class="pr-list">${recs.map((r,i)=>`<li><span class="n">${i+1}</span><span>${r}</span></li>`).join('')}</ul></div>
+      <div class="pr-tag" style="margin-top:6px">Почему этому можно верить</div>
+      <div class="pr-title" style="font-size:19px;margin-bottom:12px">Скан со стороны нанимателя, а не коуча</div>
+      <div class="pr-founder"><b>Николай Клименко</b> — экс-коммерческий директор. Провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за 5 лет в управлении, лично проводил финальные собеседования. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Этот скан устроен так же, как реально оценивают кандидата с той стороны стола — не по учебнику карьерного коучинга.</div>
+    </div>${pageFoot(4)}</div>`;
+
+    const pLog = hasLog ? `<div class="pr-page">${pageHead(5,'ПРИЛОЖЕНИЕ')}<div class="pr-body">
+      <div class="pr-tag">Приложение</div>
+      <div class="pr-title" style="font-size:19px">Полный лог сканера · ${feedAll.length} наблюдени${feedAll.length%10===1&&feedAll.length%100!==11?'е':[2,3,4].includes(feedAll.length%10)&&![12,13,14].includes(feedAll.length%100)?'я':'й'}</div>
+      <div class="pr-lede">Все сигналы, найденные системой по ходу скана — от критичных до второстепенных.</div>
+      <div class="pr-card"><div class="pr-log">${feedAll.map(f=>`<div class="${f.tone}">${f.text}</div>`).join('')}</div></div>
+    </div>${pageFoot(5)}</div>` : '';
+
+    const pCta = `<div class="pr-page pr-back"><div class="pr-cover-in">
+      <div class="pr-cover-top"><div class="pr-cover-logo">NAIMED<span>СКАН КАНДИДАТА</span></div><div class="pr-cover-meta">${date}</div></div>
+      <div class="pr-cover-mid">
+        <div class="pr-cover-kicker">Следующий шаг</div>
+        <div class="pr-back-title">Скан показал <i>что</i>. Разбор в Telegram покажет <i>как</i>.</div>
+        <div class="pr-back-text">На разборе я лично прохожу твой случай: конкретная причина отказов, а не общие советы. Стоимость — от 19 900 ₽.</div>
+      </div>
+      <div class="pr-cover-bottom pr-back-contact" style="border-top:1px solid rgba(255,255,255,.14)">
+        <div><div class="k">Написать</div><div class="v">${C.BOOKING_URL.replace('https://','')}</div></div>
+        <div><div class="k">Сайт</div><div class="v">naimed.ru</div></div>
+        <div><div class="k">Основатель</div><div class="v">Николай Клименко</div></div>
+      </div>
+    </div></div>`;
+
+    document.getElementById('printReport').innerHTML = p1 + p2 + p3 + p4 + p5 + pLog + pCta;
+    window.print();
+  }
+};
+
+const Session = {
+  id: null,
+  ensure(){
+    if (this.id) return this.id;
+    const url = new URL(location.href); let id = url.searchParams.get('id');
+    if (!id){ id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8); url.searchParams.set('id', id); history.replaceState(null, '', url); }
+    this.id = id; return id;
+  },
+  fromUrl(){ return new URL(location.href).searchParams.get('id'); },
+  clearUrl(){ const url = new URL(location.href); url.searchParams.delete('id'); history.replaceState(null, '', url); this.id = null; }
+};
+const Storage = {
+  key(id){ return C.STORAGE_KEY + '_' + (id || Session.ensure()); },
+  save(){ try{ localStorage.setItem(this.key(), JSON.stringify({ answers:State.answers, cursor:State.cursor, started:State.started, finished:State.finished })); }catch(e){} },
+  load(id){ try{ const raw = localStorage.getItem(this.key(id)); return raw ? JSON.parse(raw) : null; } catch(e){ return null; } },
+  clear(){ try{ localStorage.removeItem(this.key()); }catch(e){} }
+};
+const TestFill = {
+  pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; },
+  int(min,max){ return Math.floor(min + Math.random()*(max-min+1)); },
+  random(){
+    const a = {};
+    for (const q of QUESTIONS){
+      if (q.when && !q.when(a)) continue;
+      switch(q.type){
+        case 'text': a[q.id] = 'Тест'; break;
+        case 'textarea': a[q.id] = Math.random() > 0.3 ? 'Умею быстро разбираться в новой нише и закрывать первые сделки в первый месяц.' : ''; break;
+        case 'select': a[q.id] = this.pick(q.options).v; break;
+        case 'yesno': a[q.id] = Math.random() > 0.45 ? 'yes' : 'no'; break;
+        case 'chips': a[q.id] = q.options.filter(()=>Math.random() > 0.55).map(o=>o.v); if (!a[q.id].length) a[q.id] = [this.pick(q.options).v]; break;
+        case 'number': a[q.id] = q.id === 'experience_years' ? this.int(2,15) : q.id === 'search_months' ? this.int(0,8) : this.int(1,10); break;
+        case 'money':
+          if (q.id === 'current_salary') a[q.id] = this.int(80,300) * 1000;
+          else if (q.id === 'target_salary') a[q.id] = Math.round((Number(a.current_salary)||150000) * (1.1 + Math.random()*0.6));
+          break;
+        default: break;
+      }
+    }
+    return a;
+  },
+  run(){ State.answers = this.random(); State.finished = true; Storage.save(); document.getElementById('introScreen').style.display = 'none'; Final.show(); }
+};
+const App = {
+  init(){
+    Dashboard.init(); FlowUI.init();
+    if (new URLSearchParams(location.search).get('test') === '1'){ TestFill.run(); return; }
+    const urlId = Session.fromUrl();
+    if (urlId){
+      const saved = Storage.load(urlId);
+      if (saved && saved.answers && Object.keys(saved.answers).length){
+        Session.id = urlId; State.answers = saved.answers; State.cursor = saved.cursor || 0; State.started = true; State.finished = !!saved.finished;
+        document.getElementById('introScreen').style.display = 'none';
+        if (State.finished) Final.show(); else { FlowUI.els.qScreen.style.display = 'block'; FlowUI.render(); }
+      } else { Session.clearUrl(); }
+    }
+    document.getElementById('btnStart').onclick = ()=>{ Storage.clear(); Session.clearUrl(); State.reset(); FlowUI.start(); };
+  }
+};
+document.addEventListener('DOMContentLoaded', ()=>App.init());
+return { State, Scoring, GapModel, Constraint, Problems, Recs, Dashboard, Feedback, FlowUI, Final, Report, TestFill, App, QUESTIONS, CAT_LABELS };
+})();
+</script>
+<script>
+(function(){
+  var nav=document.getElementById('nd-nav');
+  function upd(){ if(nav) nav.classList.toggle('nd-scrolled', window.scrollY>40); }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+})();
+</script>
+</body></html>

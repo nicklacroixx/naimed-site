@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAIMED — я тот, кто тебе отказывал. Покажу, почему.</title>
+<meta name="description" content="Не курс и не карьерный коучинг. Экс-коммерческий директор, который провёл тысячи собеседований и построил 12 отделов продаж с нуля, разбирает твой случай и показывает настоящую причину отказа.">
+<meta name="theme-color" content="#0F0D0A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230F0D0A'/%3E%3Cpath d='M13 2 3 14h6l-2 8 10-13h-6l2-7z' fill='%23F0A93A'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NAIMED">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="NAIMED — я тот, кто тебе отказывал. Покажу, почему.">
+<meta property="og:description" content="Не курс и не карьерный коучинг. Экс-коммерческий директор, который провёл тысячи собеседований и построил 12 отделов продаж с нуля, разбирает твой случай и показывает настоящую причину отказа.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NAIMED — я тот, кто тебе отказывал. Покажу, почему.">
+<meta name="twitter:description" content="Не курс и не карьерный коучинг. Экс-коммерческий директор, который провёл тысячи собеседований и построил 12 отделов продаж с нуля, разбирает твой случай и показывает настоящую причину отказа.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0F0D0A;
+  --surface:#1B1611;
+  --surface2:#221B13;
+  --line:rgba(240,169,58,.16);
+  --line-soft:rgba(255,255,255,.07);
+  --em:#F0A93A;
+  --em-dim:#B3781E;
+  --text:#F4EDE1;
+  --muted:#AC9F8B;
+  --faint:#71654F;
+  --ink:#1C1206;
+  --danger:#F87171;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-padding-top:88px;background:var(--bg);}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+img{max-width:100%;}
+
+/* aurora */
+#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+#aurora b{position:absolute;border-radius:50%;filter:blur(70px);display:block;}
+#aurora .a1{width:56vw;height:56vw;left:-14vw;top:-14vw;background:radial-gradient(circle,rgba(240,169,58,.15),transparent 62%);animation:aur1 28s ease-in-out infinite;}
+#aurora .a2{width:44vw;height:44vw;right:-10vw;top:18vh;background:radial-gradient(circle,rgba(196,102,32,.18),transparent 62%);animation:aur2 34s ease-in-out infinite;}
+@keyframes aur1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,4vh) scale(1.12)}}
+@keyframes aur2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-4vw,5vh) scale(1.08)}}
+
+main,header,footer{position:relative;z-index:1;}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;background:rgba(15,13,10,.72);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--line-soft);}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto;}
+.logo-font{font-family:'Orbitron',sans-serif;}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:17px;letter-spacing:.01em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:7px;}
+.logo .bolt{width:16px;height:16px;flex:none;color:var(--em);}
+.nav-links{display:flex;gap:28px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+.nav-links a:hover{color:var(--em);}
+.nav-cta{background:var(--em);color:var(--ink);padding:11px 20px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 22px rgba(240,169,58,.22);transition:transform .15s,box-shadow .15s;white-space:nowrap;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(240,169,58,.38);}
+@media(max-width:760px){.nav-links{display:none;}}
+
+/* badges */
+.em-tag{display:inline-block;border:1px solid rgba(240,169,58,.3);border-radius:6px;padding:6px 14px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--em);}
+.levels{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px;}
+.level-tag{display:inline-block;background:var(--surface);border:1px solid var(--line-soft);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:600;color:var(--muted);}
+
+/* hero */
+.hero{padding:88px 0 64px;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+@media(min-width:980px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:56px;}}
+h1{font-size:clamp(32px,5.4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:22px 0 24px;}
+h1 .hl{color:var(--em);}
+.hero p.lead{color:var(--muted);font-size:clamp(15px,1.8vw,17px);max-width:560px;margin-bottom:14px;line-height:1.7;}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 14px;}
+.btn-primary{background:var(--em);color:var(--ink);font-weight:800;padding:16px 28px;border-radius:10px;font-size:15px;box-shadow:0 0 26px rgba(240,169,58,.25);transition:transform .15s,box-shadow .15s,background .15s;}
+.btn-primary:hover{transform:translateY(-2px);background:#fff;box-shadow:0 0 34px rgba(240,169,58,.4);}
+.btn-secondary{border:1px solid var(--line-soft);color:var(--text);padding:16px 24px;border-radius:10px;font-size:15px;font-weight:600;transition:border-color .15s,background .15s;}
+.btn-secondary:hover{border-color:rgba(240,169,58,.4);background:var(--surface);}
+.fine{font-size:12.5px;color:var(--faint);}
+
+/* diagnostic widget */
+.dwidget{position:relative;border-radius:16px;padding:26px 26px 22px;background:linear-gradient(180deg,rgba(27,22,17,.85),rgba(15,13,10,.85));border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
+.dw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.dw-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+.dw-live{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--em);}
+.dw-live i{width:6px;height:6px;border-radius:50%;background:var(--em);box-shadow:0 0 8px rgba(240,169,58,.8);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dw-row{display:grid;grid-template-columns:110px 1fr 34px;align-items:center;gap:12px;margin-bottom:13px;}
+.dw-row .n{font-size:12px;color:var(--muted);font-weight:600;}
+.dw-row .t{height:6px;border-radius:4px;background:rgba(255,255,255,.06);overflow:hidden;}
+.dw-row .t i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--em-dim),var(--em));box-shadow:0 0 8px rgba(240,169,58,.3);}
+.dw-row .v{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-align:right;}
+.dw-foot{border-top:1px dashed var(--line);padding-top:16px;margin-top:6px;font-size:11.5px;color:var(--faint);line-height:1.5;}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:8px 0 0;}
+.stat{background:linear-gradient(180deg,rgba(27,22,17,.6),rgba(15,13,10,.6));padding:28px 20px;text-align:center;}
+.stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:clamp(22px,3.4vw,28px);color:var(--em);font-weight:700;margin-bottom:6px;text-shadow:0 0 18px rgba(240,169,58,.3);}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.4;}
+@media(max-width:760px){.stats{grid-template-columns:1fr;}}
+
+/* sections */
+section{padding:64px 0;border-top:1px solid var(--line-soft);}
+.hero{border-top:none;}
+.center{text-align:center;}
+.section-tag{display:flex;justify-content:center;margin-bottom:18px;}
+.section-title{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px;}
+.section-sub{color:var(--muted);max-width:600px;margin:0 auto 44px;font-size:15.5px;line-height:1.65;}
+
+/* glass cards */
+.glass{background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);border:1px solid var(--line);border-radius:14px;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.glass:hover{border-color:rgba(240,169,58,.38);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.4);}
+
+.fit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+.fit-card{padding:28px 24px;}
+.fit-card .icon{font-size:24px;margin-bottom:14px;display:block;}
+.fit-card h3{font-size:16.5px;font-weight:700;margin-bottom:8px;}
+.fit-card p{color:var(--muted);font-size:14px;line-height:1.6;}
+@media(max-width:820px){.fit-grid{grid-template-columns:1fr;}.hidden-mob{display:none;}}
+
+/* insight block */
+.insight{padding:36px 34px;}
+.insight p{color:var(--muted);line-height:1.75;font-size:15px;margin-bottom:14px;}
+.insight p:last-child{margin-bottom:0;}
+.insight .kicker{color:var(--text);font-weight:700;text-align:center;margin:24px 0 10px;font-size:16px;}
+.insight .punch{color:#fff;font-size:clamp(19px,2.6vw,25px);font-weight:800;text-align:center;line-height:1.4;letter-spacing:-.01em;margin-top:28px;}
+.insight .nerve{border-left:2px solid var(--em);padding:2px 0 2px 20px;margin:22px 0;color:var(--text);font-size:15.5px;line-height:1.7;}
+.insight .nerve b{color:#fff;}
+
+/* versus */
+.versus-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+@media(min-width:860px){.versus-grid{grid-template-columns:1fr 1fr;gap:24px;}}
+.versus-col{padding:32px;}
+.versus-col h3{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;}
+.versus-col.bad h3{color:var(--danger);}
+.versus-col.good h3{color:var(--em);}
+.cmp-list{display:flex;flex-direction:column;gap:15px;}
+.cmp-row{display:flex;gap:13px;align-items:flex-start;font-size:14px;line-height:1.55;color:var(--muted);}
+.versus-col.good .cmp-row{color:var(--text);}
+.cmp-ico{flex:none;width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.cmp-ico svg{width:11px;height:11px;display:block;}
+.cmp-x{background:rgba(248,113,113,.09);color:var(--danger);box-shadow:inset 0 0 0 1px rgba(248,113,113,.22);}
+.cmp-v{background:rgba(240,169,58,.14);color:var(--em);box-shadow:inset 0 0 0 1px rgba(240,169,58,.4),0 0 14px rgba(240,169,58,.18);}
+
+/* steps */
+.steps{display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:52px 1fr;gap:20px;padding-bottom:34px;position:relative;}
+.step:last-child{padding-bottom:0;}
+.step:not(:last-child)::before{content:"";position:absolute;left:25px;top:52px;bottom:0;width:1px;background:var(--line-soft);}
+.step-num{width:52px;height:52px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;color:var(--em);flex-shrink:0;}
+.step-body h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.step-body p{color:var(--muted);font-size:14.5px;line-height:1.6;max-width:540px;}
+
+/* founder */
+.founder{padding:40px;}
+.founder-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+@media(min-width:860px){.founder-grid{grid-template-columns:1.1fr .9fr;gap:40px;}}
+.founder h2{font-size:24px;font-weight:800;margin-bottom:14px;letter-spacing:-.02em;}
+.founder p{color:var(--muted);font-size:14.5px;line-height:1.7;margin-bottom:12px;}
+.founder ul{list-style:none;display:flex;flex-direction:column;}
+.founder ul li{padding:13px 0;border-top:1px solid var(--line-soft);display:flex;gap:10px;font-size:13.5px;color:var(--text);}
+.founder ul li:first-child{border-top:none;}
+.founder ul li::before{content:"→";color:var(--em);font-weight:800;flex:none;}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:980px){.price-grid{grid-template-columns:1fr;}}
+.price-card{padding:30px 26px;display:flex;flex-direction:column;position:relative;}
+.price-card.highlight{border-color:var(--em);}
+.price-card.highlight::before{content:"ЧАЩЕ ВСЕГО ВЫБИРАЮТ";position:absolute;top:-11px;left:22px;background:var(--em);color:var(--ink);font-size:10px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.05em;}
+.price-card .tier{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--em-dim);margin-bottom:10px;}
+.price-card h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.price-card .price{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;margin:10px 0 4px;color:var(--text);}
+.price-card .price span{font-size:12.5px;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif;}
+.price-card .desc{color:var(--muted);font-size:13.5px;margin-bottom:18px;line-height:1.55;}
+.price-card ul{list-style:none;flex:1;margin-bottom:22px;}
+.price-card ul li{font-size:13.5px;padding:7px 0;display:flex;gap:8px;color:var(--text);}
+.price-card ul li::before{content:"✓";color:var(--em);font-weight:800;flex:none;}
+.price-card .btn-secondary,.price-card .btn-primary{text-align:center;}
+.price-note{max-width:680px;margin:28px auto 0;text-align:center;font-size:12.5px;color:var(--faint);line-height:1.6;}
+
+/* faq */
+.faq-item{border-bottom:1px solid var(--line-soft);}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:1.25rem;padding:1.5rem 0;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-idx{font-family:'JetBrains Mono',monospace;color:var(--em-dim);font-size:11px;letter-spacing:.1em;flex:none;transition:color .25s;}
+.faq-q{color:var(--text);font-weight:600;font-size:16px;line-height:1.4;flex:1;}
+.faq-plus{flex:none;color:var(--faint);font-size:20px;font-weight:300;line-height:1;transition:transform .3s,color .25s;}
+.faq-item summary:hover .faq-plus,.faq-item summary:hover .faq-idx{color:var(--em);}
+.faq-item[open] summary .faq-plus{transform:rotate(45deg);color:var(--em);}
+.faq-item[open] summary .faq-idx{color:var(--em);}
+.faq-a{padding:0 2.5rem 1.7rem 0;margin-left:calc(1.25rem + 2.2em);color:var(--muted);font-size:14.5px;line-height:1.7;max-width:42rem;}
+@media(max-width:640px){.faq-a{margin-left:0;padding-right:0;}}
+
+/* final cta */
+.final-cta{text-align:center;padding:64px 32px;}
+.final-cta h2{font-size:clamp(24px,4vw,34px);font-weight:800;margin-bottom:14px;letter-spacing:-.02em;}
+.final-cta p{color:var(--muted);margin-bottom:28px;font-size:15.5px;}
+
+footer{border-top:1px solid var(--line-soft);padding:56px 0;}
+.footer-inner{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;}
+@media(min-width:760px){.footer-inner{flex-direction:row;align-items:flex-start;justify-content:space-between;text-align:left;}}
+.footer-brand{display:block;}
+.footer-brand .logo{justify-content:center;margin-bottom:8px;}
+@media(min-width:760px){.footer-brand .logo{justify-content:flex-start;}}
+.footer-tag{color:var(--faint);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.footer-right{display:flex;flex-direction:column;align-items:center;gap:16px;}
+@media(min-width:760px){.footer-right{align-items:flex-end;}}
+.footer-links{display:flex;flex-direction:column;align-items:center;gap:12px;}
+@media(min-width:640px){.footer-links{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:28px;}}
+.footer-links a{color:var(--faint);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:color .2s;}
+.footer-links a:hover{color:var(--em);}
+.footer-copy{color:var(--faint);font-size:11px;letter-spacing:.03em;text-align:center;}
+@media(min-width:760px){.footer-copy{text-align:right;}}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}#aurora b{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<div id="aurora" aria-hidden="true"><b class="a1"></b><b class="a2"></b></div>
+
+<header>
+  <nav>
+    <div class="logo"><svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h6l-2 8 10-13h-6l2-7z"/></svg>NAIMED</div>
+    <div class="nav-links">
+      <a href="diagnostic/index.html">Скан кандидата</a>
+      <a href="#insight">Почему это работает</a>
+      <a href="#versus">Отличия</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#founder">Почему я</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Разобрать мой случай</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="em-tag reveal">Не коуч. Бывший наниматель</span>
+        <h1 class="reveal">Я тот, кто тебе <span class="hl">отказывал</span> — и покажу, почему</h1>
+        <p class="lead reveal">NAIMED — не курс и не карьерный коучинг. Я был коммерческим директором и сам проводил финальные собеседования на управленческие и менеджерские позиции — сам решал, кого не взять. Теперь разбираю твой случай и показываю конкретную причину отказа: то, что ты физически не можешь увидеть изнутри.</p>
+        <p class="lead reveal">Конкуренты учат общему методу «как пройти собес». Я даю персональный инсайдерский диагноз — с той стороны стола, где принимают решение.</p>
+        <div class="levels reveal">
+          <span class="level-tag">Управленческая позиция</span>
+          <span class="level-tag">Менеджерская позиция</span>
+          <span class="level-tag">Ведущий специалист</span>
+        </div>
+        <div class="cta-row reveal">
+          <a class="btn-primary" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Разобрать мой случай →</a>
+          <a class="btn-secondary" href="diagnostic/index.html">Пройти бесплатный скан</a>
+        </div>
+        <p class="fine reveal">Тайный собес и разбор причины отказов — от 19 900 ₽. Или начни с <a href="diagnostic/index.html" style="color:var(--em);text-decoration:underline">бесплатного скана кандидата</a> — 15 минут, без Telegram.</p>
+      </div>
+
+      <div class="dwidget reveal">
+        <div class="dw-head">
+          <span class="dw-title">Что обычно решает исход финала</span>
+          <span class="dw-live"><i></i>инсайд</span>
+        </div>
+        <div class="dw-row"><span class="n">Резюме</span><span class="t"><i style="width:52%"></i></span><span class="v">52%</span></div>
+        <div class="dw-row"><span class="n">Ответы на финале</span><span class="t"><i style="width:71%"></i></span><span class="v">71%</span></div>
+        <div class="dw-row"><span class="n">Переговоры об окладе</span><span class="t"><i style="width:64%"></i></span><span class="v">64%</span></div>
+        <div class="dw-row"><span class="n">Первое впечатление</span><span class="t"><i style="width:45%"></i></span><span class="v">45%</span></div>
+        <div class="dw-foot">Ориентировочная раскладка по опыту найма на управленческие и менеджерские позиции. Твою персональную причину отказа считаем на разборе.</div>
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><b>+18%</b><span>рынок подбора персонала в РФ за 2024 год — деньги в найме есть, конкуренция за место растёт</span></div>
+      <div class="stat"><b>резюме&nbsp;&gt;&nbsp;вакансий</b><span>в части сегментов число резюме растёт быстрее числа открытых позиций</span></div>
+      <div class="stat"><b>12</b><span>бизнесов, которым лично построил отдел продаж с нуля — теперь этот опыт работает на тебя</span></div>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">Знакомо?</span></div>
+      <h2 class="section-title">Тебе знакома эта ситуация?</h2>
+      <p class="section-sub">Ты не слабее тех, кто получает офферы. Просто оценивают тебя не так, как ты сам себя оцениваешь.</p>
+    </div>
+    <div class="fit-grid">
+      <div class="glass fit-card">
+        <span class="icon">📄</span>
+        <h3>Резюме не отражает уровень</h3>
+        <p>Опыт сильный, а на бумаге выглядит как «ещё один менеджер». Нанимающий закрывает вкладку за несколько секунд.</p>
+      </div>
+      <div class="glass fit-card">
+        <span class="icon">🎯</span>
+        <h3>Доходишь до финала — и мимо</h3>
+        <p>Первые этапы проходишь легко, а на финальном собесе с собственником теряешься и не можешь себя продать.</p>
+      </div>
+      <div class="glass fit-card">
+        <span class="icon">📉</span>
+        <h3>Соглашаешься на оклад ниже рынка</h3>
+        <p>Устал искать и берёшь первое, что предложили — вместо того, что реально стоишь по опыту.</p>
+      </div>
+      <div class="glass fit-card">
+        <span class="icon">⏳</span>
+        <h3>Поиск затягивается</h3>
+        <p>Месяц идёт за месяцем без результата. Пока ты ждёшь идеального оффера, рынок не ждёт — каждый месяц без результата стоит тебе в деньгах, а не только в нервах.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="insight">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">Почему это работает</span></div>
+      <h2 class="section-title">Кандидат не видит себя<br class="hidden-mob"> со стороны нанимателя</h2>
+      <p class="section-sub">Это не вопрос компетентности. Это структурная слепая зона — свою причину отказа физически не видно с той стороны стола, где сидит кандидат.</p>
+    </div>
+    <div class="glass insight">
+      <p>Карьерные консультанты и коучи учат общей теории: как оформить резюме, как отвечать на «сложные» вопросы. Это работает в среднем — и почти никогда не отвечает на твой конкретный вопрос: «почему отказали именно мне».</p>
+      <p>Кадровые агентства с «гарантией трудоустройства» продают доступ к вакансиям и подписку — но не сидели по ту сторону стола на финальном собеседовании с собственником и не могут сказать, что реально решило исход разговора.</p>
+      <p class="kicker">NAIMED устроен иначе</p>
+      <p>Я сам был на месте того, кто отказывает: провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за последние 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Я вижу резюме и ответы кандидата так же, как их видит наниматель — потому что сам им был.</p>
+      <p class="nerve">Иногда причина отказа вообще не в резюме и не в ответах. За 15 минут разговора наниматель считывает то, в чём ты сам себе не признаёшься: <b>страх</b> — не потянуть новый уровень ответственности, не справиться с тем, на что подписываешься, провалиться на новом месте у всех на виду. Ты называешь это «не сошлись по деталям». Наниматель называет это иначе — и просто не берёт.</p>
+      <p class="punch">Конкуренты продают метод.<br class="hidden-mob"> NAIMED даёт инсайдерский диагноз.</p>
+    </div>
+  </section>
+
+  <section id="versus">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">Отличия</span></div>
+      <h2 class="section-title">Чем это отличается от того,<br class="hidden-mob"> что ты уже пробовал</h2>
+      <p class="section-sub">Рынок карьерной помощи не пустой — и это скорее хорошо: спрос подтверждён. Но большинство продают со стороны кандидата. NAIMED — с другой.</p>
+    </div>
+    <div class="versus-grid">
+      <div class="glass versus-col bad">
+        <h3>Обычный путь</h3>
+        <div class="cmp-list">
+          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Читаешь советы «для всех» и не знаешь, применимы ли они к твоему случаю</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Проходишь этапы вслепую — о провале узнаёшь по молчанию HR</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Веришь в «гарантию трудоустройства» на бумаге, которая ни к чему не обязывает</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span>Выбираешь между демпинговыми консультантами без опыта найма и дорогими курсами «про карьеру мечты»</span></div>
+        </div>
+      </div>
+      <div class="glass versus-col good">
+        <h3>С NAIMED</h3>
+        <div class="cmp-list">
+          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Получаешь персональную причину отказа — ту, что видно только с другой стороны стола</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Тренируешь конкретный собес с человеком, который сам их проводил</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Честную оценку шансов — без обещаний, которые потом не подтверждаются</span></div>
+          <div class="cmp-row"><span class="cmp-ico cmp-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span>Понятную цену за понятный результат — от разбора до сопровождения к офферу</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">Как это устроено</span></div>
+      <h2 class="section-title">Что входит в работу</h2>
+      <p class="section-sub">Три конкретных шага. Никакой «работы над мышлением» — только то, что двигает тебя к офферу.</p>
+    </div>
+    <div class="glass" style="padding:40px;">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Тайный собес и разбор причины отказа</h3>
+            <p>Провожу с тобой собеседование так, как его проводит наниматель, и показываю конкретную причину, по которой тебя не берут — а не общий фидбек по резюме.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Резюме и тренировочные собеседования</h3>
+            <p>Переупаковываем опыт под конкретную вакансию и отрабатываем 3–4 тренировочных собеседования — на реальных вопросах, которые задают на управленческих и менеджерских позициях.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Сопровождение до оффера</h3>
+            <p>8 недель сопровождения: подбор целевых вакансий, переговоры по окладу. У части клиентов — прямой выход на вакансии через мою сеть контактов.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder">
+    <div class="glass founder">
+      <div class="founder-grid">
+        <div>
+          <span class="em-tag" style="margin-bottom:16px;display:inline-block;">Почему я</span>
+          <h2>Почему мне можно верить</h2>
+          <p>Я не карьерный коуч из курса про «стань собой». Я сам сидел по другую сторону стола на собеседованиях на управленческие и менеджерские позиции в продажах — и сам решал, кому отказать.</p>
+          <p>Провёл тысячи собеседований, нанял и вырастил в должности 300+ сотрудников за 5 лет в управлении. Построил отделы продаж и вытащил из кризиса 12 бизнесов. Знаю, что реально спрашивают на финале и что решает исход разговора — не в теории, а по сотням живых кейсов.</p>
+        </div>
+        <ul>
+          <li>Тысячи собеседований и решений «нанять / отказать» изнутри компаний</li>
+          <li>300+ нанятых и выросших в должности сотрудников за 5 лет в управлении</li>
+          <li>12 бизнесов, которым лично построил отдел продаж с нуля</li>
+          <li>Сеть контактов среди рекрутеров и руководителей — растёт с каждым разбором</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">Тарифы</span></div>
+      <h2 class="section-title">Продуктовая линейка</h2>
+      <p class="section-sub">Цена растёт вместе с объёмом работы и глубиной вовлечения — от разового разбора до полного сопровождения к офферу.</p>
+    </div>
+    <div class="price-grid">
+      <div class="glass price-card">
+        <div class="tier">Ступень 1</div>
+        <h3>Тайный разбор</h3>
+        <div class="price">19 900 ₽</div>
+        <p class="desc">Тайный собес + разбор настоящей причины отказов — от человека, который лично вытащил из кризиса 12 бизнесов, построив им отдел продаж с нуля.</p>
+        <ul>
+          <li>Собеседование в формате нанимателя</li>
+          <li>Конкретная причина, а не общий фидбек</li>
+          <li>Разбор в течение 48 часов</li>
+        </ul>
+        <a class="btn-secondary" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Обсудить</a>
+      </div>
+      <div class="glass price-card highlight">
+        <div class="tier">Ступень 2</div>
+        <h3>Полное сопровождение</h3>
+        <div class="price">79 000–99 000 ₽</div>
+        <p class="desc">Резюме под конкретную вакансию, тренировочные собеседования, 8 недель сопровождения до оффера.</p>
+        <ul>
+          <li>Переупаковка резюме под вакансию</li>
+          <li>3–4 тренировочных собеседования</li>
+          <li>Сопровождение 8 недель до оффера</li>
+        </ul>
+        <a class="btn-primary" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Обсудить</a>
+      </div>
+      <div class="glass price-card">
+        <div class="tier">Ступень 3</div>
+        <h3>Прямое трудоустройство</h3>
+        <div class="price">50 000 ₽ <span>+ 30% первого оклада</span></div>
+        <p class="desc">Выход на вакансию через личные связи и success fee — платишь по факту результата.</p>
+        <ul>
+          <li>Прямой выход на вакансию через мою сеть</li>
+          <li>Сопровождение переговоров по окладу</li>
+          <li>Основная оплата — по факту оффера</li>
+        </ul>
+        <a class="btn-secondary" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Обсудить</a>
+      </div>
+    </div>
+    <p class="price-note">Услуги подготовки и консультирования по трудоустройству. NAIMED не оформляет и не продаёт гарантию трудоустройства — итоговое решение всегда за нанимателем.</p>
+    <p class="price-note" style="margin-top:10px;color:var(--em);font-weight:600;">Веду каждый разбор лично, без делегирования ассистентам — поэтому беру ограниченное число клиентов в месяц.</p>
+  </section>
+
+  <section id="faq">
+    <div class="center">
+      <div class="section-tag"><span class="em-tag">FAQ</span></div>
+      <h2 class="section-title">Вопросы, которые обычно задают</h2>
+    </div>
+    <div style="max-width:760px;margin:0 auto;">
+      <details class="faq-item">
+        <summary><span class="faq-idx">01</span><span class="faq-q">Это гарантия трудоустройства?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Нет. Обещания «гарантированного трудоустройства» на бумаге на этом рынке часто ничего не значат на практике. Я даю честную персональную оценку твоих шансов и работаю до результата в рамках выбранного формата — без пустых гарантий.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-idx">02</span><span class="faq-q">Чем это отличается от карьерного коуча?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Коуч учит теории со стороны кандидата — по книгам и курсам. Я провёл тысячи собеседований и сам сидел по другую сторону стола, нанимая и отказывая кандидатам на управленческие и менеджерские позиции, поэтому вижу твой случай так же, как его увидит наниматель.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-idx">03</span><span class="faq-q">Почему это дороже, чем консультация обычного карьерного консультанта?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Обычный консультант учит по книгам. Я лично нанял и вырастил в должности 300+ сотрудников, построил отделы продаж и вытащил из кризиса 12 бизнесов. Это не сертификат коуча — это тысячи решений «взять / отказать», которые теперь работают на тебя за один разбор.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-idx">04</span><span class="faq-q">Почему нет одной фиксированной цены?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Объём работы разный: кому-то нужен один разбор, кому-то — полное сопровождение до оффера. Точный формат и цену внутри вилки согласуем после тайного собеса, когда понятно, что именно мешает.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-idx">05</span><span class="faq-q">Что если после разбора шансы окажутся низкими?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Скажу прямо, без смягчения ради продажи следующей ступени. Иногда честный ответ — это сменить целевую позицию или зарплатную вилку, а не продолжать биться в закрытую дверь.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-idx">06</span><span class="faq-q">Кто ведёт работу?</span><span class="faq-plus">+</span></summary>
+        <div class="faq-a">Лично я — без передачи ассистентам или «команде карьерных консультантов». Поэтому набор в работу ограничен.</div>
+      </details>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="glass final-cta">
+      <h2>Готов узнать настоящую причину отказов?</h2>
+      <p>15 минут в Telegram — и ты поймёшь, что на самом деле видит наниматель, когда смотрит твоё резюме.</p>
+      <a class="btn-primary" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Написать в Telegram →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+
+    <a class="footer-brand" href="#" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo"><svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h6l-2 8 10-13h-6l2-7z"/></svg>NAIMED</div>
+      <div class="footer-tag">Показываю, что видит наниматель</div>
+    </a>
+
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="mailto:info@naimed.ru">Почта</a>
+        <a href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Telegram</a>
+        <a href="policy/index.html">Политика&nbsp;конфиденциальности</a>
+        <a href="offer/index.html">Публичная&nbsp;оферта</a>
+      </div>
+      <span class="footer-copy">© 2026 NAIMED · ИП Клименко Николай Витальевич · ИНН 632200739609 · ОГРНИП 326632700116702 · г. Тольятти</span>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, {threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+
+</body>
+</html>
