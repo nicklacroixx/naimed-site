@@ -55,7 +55,7 @@ main,header,footer{position:relative;z-index:1;}
 
 /* nav */
 header{position:sticky;top:0;z-index:50;background:rgba(15,13,10,.72);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--line-soft);}
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;}
 .logo-font{font-family:'Orbitron',sans-serif;}
 .logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:17px;letter-spacing:.01em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:7px;}
 .logo .bolt{width:16px;height:16px;flex:none;color:var(--em);}
@@ -140,13 +140,13 @@ section{padding:64px 0;border-top:1px solid var(--line-soft);}
 .landscape-card.me p{color:var(--text);}
 
 /* steps */
-.steps{display:flex;flex-direction:column;}
-.step{display:grid;grid-template-columns:52px 1fr;gap:20px;padding-bottom:34px;position:relative;}
-.step:last-child{padding-bottom:0;}
-.step:not(:last-child)::before{content:"";position:absolute;left:25px;top:52px;bottom:0;width:1px;background:var(--line-soft);}
-.step-num{width:52px;height:52px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;color:var(--em);flex-shrink:0;}
-.step-body h3{font-size:17px;font-weight:700;margin-bottom:6px;}
-.step-body p{color:var(--muted);font-size:14.5px;line-height:1.6;max-width:540px;}
+.roadmap{max-width:760px;display:flex;flex-direction:column;}
+.rm-row{display:grid;grid-template-columns:110px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line-soft);}
+.rm-row:first-child{border-top:none;padding-top:0;}
+.rm-when{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--em);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding-top:3px;}
+.rm-body h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.rm-body p{color:var(--muted);font-size:14.5px;line-height:1.6;max-width:540px;}
+@media(max-width:600px){.rm-row{grid-template-columns:1fr;gap:6px;}}
 
 /* founder */
 .founder{padding:40px;}
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
     <div class="hero-grid">
       <div>
         <span class="em-tag reveal">Не коуч. Бывший наниматель</span>
-        <h1 class="reveal">Я тот, кто тебе <span class="hl">отказывал</span> — и покажу, почему</h1>
+        <h1 class="reveal">Я тот, кто тебе <span class="hl">отказывал</span> — и покажу,&nbsp;почему</h1>
         <p class="lead reveal">NAIMED — не курс и не карьерный коучинг. Я был коммерческим директором и сам проводил финальные собеседования на управленческие и менеджерские позиции — сам решал, кого не взять. Теперь разбираю твой случай и показываю конкретную причину отказа: то, что ты физически не можешь увидеть изнутри.</p>
         <p class="lead reveal">Конкуренты учат общему методу «как пройти собес». Я даю персональный инсайдерский диагноз — с той стороны стола, где принимают решение.</p>
         <div class="levels reveal">
@@ -361,33 +361,29 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
   </section>
 
   <section id="process">
-    <div class="center">
-      <div class="section-tag"><span class="em-tag">Как это устроено</span></div>
-      <h2 class="section-title">Что входит в работу</h2>
-      <p class="section-sub">Три конкретных шага. Никакой «работы над мышлением» — только то, что двигает тебя к офферу.</p>
-    </div>
-    <div class="glass" style="padding:40px;">
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <h3>Тайный собес и разбор причины отказа</h3>
-            <p>Провожу с тобой собеседование так, как его проводит наниматель, и показываю конкретную причину, по которой тебя не берут — а не общий фидбек по резюме.</p>
-          </div>
+    <div class="section-tag" style="justify-content:flex-start;"><span class="em-tag">Как это устроено</span></div>
+    <h2 class="section-title" style="text-align:left;max-width:520px;">Что входит в работу</h2>
+    <p class="section-sub" style="text-align:left;margin:0 0 40px;">Три конкретных шага. Никакой «работы над мышлением» — только то, что двигает тебя к офферу.</p>
+    <div class="roadmap">
+      <div class="rm-row">
+        <div class="rm-when">Сразу</div>
+        <div class="rm-body">
+          <h3>Тайный собес и разбор причины отказа</h3>
+          <p>Провожу с тобой собеседование так, как его проводит наниматель, и показываю конкретную причину, по которой тебя не берут — а не общий фидбек по резюме.</p>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <h3>Резюме и тренировочные собеседования</h3>
-            <p>Переупаковываем опыт под конкретную вакансию и отрабатываем 3–4 тренировочных собеседования — на реальных вопросах, которые задают на управленческих и менеджерских позициях.</p>
-          </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-when">Дальше</div>
+        <div class="rm-body">
+          <h3>Резюме и тренировочные собеседования</h3>
+          <p>Переупаковываем опыт под конкретную вакансию и отрабатываем 3–4 тренировочных собеседования — на реальных вопросах, которые задают на управленческих и менеджерских позициях.</p>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <h3>Сопровождение до оффера</h3>
-            <p>8 недель сопровождения: подбор целевых вакансий, переговоры по окладу. У части клиентов — прямой выход на вакансии через мою сеть контактов.</p>
-          </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-when">До 8 недель</div>
+        <div class="rm-body">
+          <h3>Сопровождение до оффера</h3>
+          <p>Подбор целевых вакансий, переговоры по окладу. У части клиентов — прямой выход на вакансии через мою сеть контактов.</p>
         </div>
       </div>
     </div>
