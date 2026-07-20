@@ -61,9 +61,18 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .logo .bolt{width:16px;height:16px;flex:none;color:var(--em);}
 .nav-links{display:flex;gap:28px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
 .nav-links a:hover{color:var(--em);}
-.nav-cta{background:var(--em);color:var(--ink);padding:11px 20px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 22px rgba(240,169,58,.22);transition:transform .15s,box-shadow .15s;white-space:nowrap;}
+.nav-cta{background:var(--em);color:var(--ink);padding:11px 20px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 22px rgba(240,169,58,.22);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex:none;}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(240,169,58,.38);}
+.nav-cta-short{display:none;}
 @media(max-width:760px){.nav-links{display:none;}}
+@media(max-width:480px){
+  nav{padding:16px 18px;}
+  .logo{font-size:13px;gap:5px;}
+  .logo .bolt{width:13px;height:13px;}
+  .nav-cta{padding:9px 14px;font-size:10px;}
+  .nav-cta-full{display:none;}
+  .nav-cta-short{display:inline;}
+}
 
 /* badges */
 .em-tag{display:inline-block;border:1px solid rgba(240,169,58,.3);border-radius:6px;padding:6px 14px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--em);}
@@ -88,8 +97,12 @@ h1 .hl{color:var(--em);}
 .reject-card{position:relative;border-radius:16px;padding:34px 32px 28px;background:linear-gradient(180deg,rgba(27,22,17,.85),rgba(15,13,10,.85));border:1px solid var(--line-soft);box-shadow:0 30px 80px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .reject-stamp{position:absolute;top:24px;right:26px;border:2px solid var(--danger);color:var(--danger);padding:4px 12px;font-weight:800;font-size:11px;letter-spacing:.12em;transform:rotate(7deg);border-radius:4px;opacity:.8;}
-.rc-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:18px;}
-.rc-body{font-size:14.5px;color:var(--muted);line-height:1.75;font-style:italic;padding-right:70px;}
+.rc-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:18px;padding-right:80px;}
+.rc-body{font-size:14.5px;color:var(--muted);line-height:1.75;font-style:italic;}
+@media(max-width:480px){
+  .reject-stamp{top:20px;right:20px;padding:3px 9px;font-size:9px;}
+  .rc-label{padding-right:64px;}
+}
 .rc-foot{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line-soft);font-size:13px;color:var(--em);font-weight:600;line-height:1.5;}
 
 /* stats */
@@ -228,7 +241,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0;}
       <a href="#founder">Почему я</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a class="nav-cta" href="https://t.me/klimenko_prod" target="_blank" rel="noopener">Разобрать мой случай</a>
+    <a class="nav-cta" href="https://t.me/klimenko_prod" target="_blank" rel="noopener"><span class="nav-cta-full">Разобрать мой случай</span><span class="nav-cta-short">Написать</span></a>
   </nav>
 </header>
 
